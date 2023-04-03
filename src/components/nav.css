@@ -23,6 +23,10 @@
   margin-left: 55px;
 }
 
+.nav:first-child {
+  margin-left: 0;
+}
+
 .createBtn {
   background-color: #fff;
 }
