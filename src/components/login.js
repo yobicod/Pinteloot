@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Styles/login.css";
 function Login() {
+  console.log("Rendered login");
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [formValid, setFormValid] = useState(false);
@@ -32,7 +33,7 @@ function Login() {
               <label>Password</label>
               <input
                 className="input"
-                type="text"
+                type="password"
                 placeholder="Password"
                 onChange={inputPassword}
                 value={password}

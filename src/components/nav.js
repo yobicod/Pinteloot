@@ -3,6 +3,8 @@ import "./Styles/nav.css";
 import navBell from "../Images/navBell.png";
 import chat from "../Images/chat.png";
 function Nav() {
+  console.log("Rendered nav");
+
   const [searchTxt, setSearchTxt] = useState("");
   const inputTxt = (event) => {
     setSearchTxt(event.target.value);

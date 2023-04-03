@@ -44,6 +44,11 @@ label {
   height: 35px;
   border: 1px solid #787878;
   border-radius: 25px;
+  padding: 0 15px;
+}
+
+.input:focus-visible {
+  outline: none;
 }
 
 a {
