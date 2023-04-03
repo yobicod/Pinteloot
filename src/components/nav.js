@@ -1,5 +1,5 @@
 import React from "react";
-import "./nav.css";
+import "./Styles/nav.css";
 import { useState } from "react";
 import navBell from "../Images/navBell.png";
 import chat from "../Images/chat.png";
