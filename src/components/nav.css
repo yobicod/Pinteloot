@@ -1,0 +1,52 @@
+.navContainer {
+  width: 100%;
+  height: 77px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.navBtn {
+  width: 97px;
+  height: 35px;
+  background-color: #16ae25;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav {
+  margin-left: 55px;
+}
+
+.createBtn {
+  background-color: #fff;
+}
+
+.homeTxt {
+  color: #fff;
+}
+
+.searchBox {
+  width: 902px;
+  height: 44px;
+  background: #f0f0f0;
+  border: #fff;
+  border-radius: 100px;
+}
+
+.navBellIcon {
+  width: 38px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.navChatIcon {
+  width: 38px;
+  height: 36px;
+  cursor: pointer;
+}
