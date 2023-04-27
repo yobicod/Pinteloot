@@ -14,6 +14,33 @@ function Login() {
     setPassword(event.target.value);
   };
 
+  const handleOnLogin = async (e) => {
+    const user = {
+      email: id,
+      password: password,
+    };
+
+    if (id.length === 0 || password.length === 0) {
+      alert("Please fill all input");
+    } else {
+      e.preventDefault();
+      let result = await fetch("http://localhost:5000/login", {
+        method: "post",
+        body: JSON.stringify(user),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      result = await result.json();
+      console.warn(result);
+      if (result) {
+        console.log("Login succesfully");
+        setId("");
+        setPassword("");
+        localStorage.setItem("user", JSON.stringify(result));
+      }
+    }
+  };
   return (
     <div>
       <div className="container">
@@ -40,7 +67,9 @@ function Login() {
               ></input>
             </div>
             <a href="#">Forgot your password?</a>
-            <button className="loginButton">Login</button>
+            <button className="loginButton" onClick={handleOnLogin}>
+              Login
+            </button>
           </form>
         </div>
       </div>
