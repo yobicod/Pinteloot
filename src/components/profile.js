@@ -2,6 +2,7 @@ import React,{ useState, useEffect } from "react"
 import "./Styles/profile.css"
 import {v4 as uuidv4} from 'uuid'
 import Avatar from '../Images/img_avatar.png'
+//profile test
 function Profile() {
     console.log("Render Profile")
 
