@@ -47,6 +47,10 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  user_create:{
+		type: String,
+		required: false,
+	},
   date: {
     type: Date,
     default: Date.now,
@@ -127,5 +131,14 @@ app.post("/post", async (req, resp) => {
     resp.send("Something Went Wrong");
   }
 });
+
+app.get("/getAllPost", async(req, res) => {
+	try{
+		const allpost =  await Post.find({});
+		res.send({status: 'ok', data: allpost});
+	} catch (error){
+		console.log(error)
+	}
+})
 
 app.listen(5000);

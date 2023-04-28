@@ -6,8 +6,10 @@ import { v4 as uuidv4} from 'uuid'
 function Createpin() {
     console.log("Rendered create");
 
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user._id)
     const [inputValues, setInputValues] = useState([
-      {Title: '', Description: '', Link:'', img:''},
+      {Title: '', Description: '', Link:'', img:'', user_create:''},
   ]);
   
     const inputTitle = (title, index) =>{
@@ -16,7 +18,8 @@ function Createpin() {
         Title: title.target.value,
         Description: newInputValues[index].Description,
         Link:newInputValues[index].Link,
-        img:newInputValues[index].img
+        img:newInputValues[index].img,
+        user_create:newInputValues[index].user_create
       };
       setInputValues(newInputValues);
     }
@@ -27,7 +30,8 @@ function Createpin() {
         Title: newInputValues[index].Title,
         Description: description.target.value,
         Link:newInputValues[index].Link,
-        img:newInputValues[index].img
+        img:newInputValues[index].img,
+        user_create:newInputValues[index].user_create
       };
       setInputValues(newInputValues);
     }
@@ -38,13 +42,14 @@ function Createpin() {
         Title: newInputValues[index].Title,
         Description: newInputValues[index].Description,
         Link:link.target.value,
-        img:newInputValues[index].img
+        img:newInputValues[index].img,
+        user_create:newInputValues[index].user_create
       };
       setInputValues(newInputValues);
     }
 
     const addNewpin = () =>{
-      const newInputValues = {Title: '',Description: '',Link:'',img:''};
+      const newInputValues = {Title: '', Description: '', Link:'', img:'', user_create:''};
       console.log(newInputValues)
       const newItems = [...inputValues, newInputValues];
       setInputValues(newItems);
@@ -66,7 +71,7 @@ function Createpin() {
           console.warn(result);
           if (result) {
               // alert("Data saved succesfully");
-              setInputValues([{Title: '', Description: '', Link:'', img:''}]);
+              setInputValues([{Title: '', Description: '', Link:'', img:'', user_create:''}]);
           }
       })
       }
@@ -91,7 +96,8 @@ function Createpin() {
                     Title: newInputValues[index].Title,
                     Description: newInputValues[index].Description,
                     Link:newInputValues[index].Link,
-                    img:image64
+                    img:image64,
+                    user_create:user._id
                   };
                   setInputValues(newInputValues);
                 }
@@ -134,7 +140,7 @@ function Createpin() {
     return inputValues.map((value, index) => {
       return (
         <div className="div-first">
-        <div className="container">
+        <div className="container-post">
 
           <MyDropzone pictures={value.img} index={index}/>
           

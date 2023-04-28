@@ -6,6 +6,7 @@ import Avatar from '../Images/img_avatar.png'
 function Profile() {
     console.log("Render Profile")
 
+    const user = JSON.parse(localStorage.getItem('user'));
     const [modal, setModal] = useState(false)
     const [createPost, setCreatePost] = useState([]);
 
@@ -29,13 +30,15 @@ function Profile() {
     const Imgcreate = () =>{
         return(
           createPost.map((value, index) =>{
-            return(
+            if (value.user_create === user._id) {
+              return(
                 <img
                 className="imgpost"
                 src={value.img}
                 style={{width:'250px', height:'380px', margin:'25px 15px'}}
                 ></img> 
-            )
+            )  
+            }else{}    
         })  
         )   
     }
@@ -76,7 +79,7 @@ function Profile() {
                   <img className="avatar" src={Avatar}></img>  
                 </div>
                 <div className="profile-detail">
-                    <h2>Yotsanan Kladkhaek</h2>
+                    <h2>{user.name}</h2>
                 </div>
                 <div className="profile-button">
                     <button className="button-share button-profile">Share</button>
