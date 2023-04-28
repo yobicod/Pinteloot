@@ -57,9 +57,17 @@ const PostSchema = new mongoose.Schema({
   },
 });
 
+const CommentSchema = new mongoose.schema({
+  account: {
+    type: String,
+  },
+  text: {
+    type: String,
+  },
+});
 const User = mongoose.model("users", UserSchema);
 const Post = mongoose.model("posts", PostSchema);
-
+const comment = mongoose.model("comments", CommentSchemas);
 mongoose.connection.on(
   "error",
   console.error.bind(console, "MongoDB connection error:")
@@ -106,12 +114,29 @@ app.post("/login", async (req, res) => {
 
     if (user) {
       // localStorage.setItem("user", "test");
-      res.send(JSON.stringify(user));
+      res.send(user);
     } else {
       res.send("Wrond id or password");
     }
   } catch (e) {
     console.log(e);
+  }
+});
+
+app.post("/comment", async (req, res) => {
+  try {
+    const { acc, text } = req.body;
+    let result = await comment.save();
+    result = result.toObject();
+    if (result) {
+      res.send(req.body);
+      console.log(result);
+    } else {
+      console.log("Error saving comment");
+    }
+  } catch (e) {
+    console.log(e);
+    res.send("Something went Wrong");
   }
 });
 
