@@ -57,7 +57,7 @@ const PostSchema = new mongoose.Schema({
   },
 });
 
-const CommentSchema = new mongoose.schema({
+const CommentSchema = new mongoose.Schema({
   account: {
     type: String,
   },
@@ -67,7 +67,11 @@ const CommentSchema = new mongoose.schema({
 });
 const User = mongoose.model("users", UserSchema);
 const Post = mongoose.model("posts", PostSchema);
-const comment = mongoose.model("comments", CommentSchemas);
+const comment = mongoose.model("comments", CommentSchema);
+// User.createIndexes();
+// Post.createIndexes();
+// comment.createIndexes();
+
 mongoose.connection.on(
   "error",
   console.error.bind(console, "MongoDB connection error:")
