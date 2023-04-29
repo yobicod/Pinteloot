@@ -118,7 +118,7 @@ app.post("/login", async (req, res) => {
       // localStorage.setItem("user", "test");
       res.send(user);
     } else {
-      res.send("Wrond id or password");
+      res.send("Wrong id or password");
     }
   } catch (e) {
     console.log(e);
