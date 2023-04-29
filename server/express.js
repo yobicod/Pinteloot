@@ -47,6 +47,10 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  user_create:{
+		type: String,
+		required: false,
+	},
   date: {
     type: Date,
     default: Date.now,
@@ -63,7 +67,15 @@ const CommentSchema = new mongoose.Schema({
 });
 const User = mongoose.model("users", UserSchema);
 const Post = mongoose.model("posts", PostSchema);
+<<<<<<< HEAD
 const Comment = mongoose.model("comments", CommentSchema);
+=======
+const comment = mongoose.model("comments", CommentSchema);
+// User.createIndexes();
+// Post.createIndexes();
+// comment.createIndexes();
+
+>>>>>>> 4259dc1132ed46e7da3732f6a4c14539858e07ba
 mongoose.connection.on(
   "error",
   console.error.bind(console, "MongoDB connection error:")
@@ -153,6 +165,7 @@ app.post("/post", async (req, resp) => {
   }
 });
 
+<<<<<<< HEAD
 app.post("/report", async (req, res) => {
   try {
     const report = new Report(req.body);
@@ -169,4 +182,15 @@ app.post("/report", async (req, res) => {
     res.send("Someting went wrong");
   }
 });
+=======
+app.get("/getAllPost", async(req, res) => {
+	try{
+		const allpost =  await Post.find({});
+		res.send({status: 'ok', data: allpost});
+	} catch (error){
+		console.log(error)
+	}
+})
+
+>>>>>>> 4259dc1132ed46e7da3732f6a4c14539858e07ba
 app.listen(5000);

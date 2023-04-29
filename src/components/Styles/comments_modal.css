@@ -1,0 +1,40 @@
+.comment {
+    display:flex;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .comment img {
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+  
+  .comment-details {
+    flex: 1;
+  }
+  
+  .comment-author {
+    font-weight: 700;
+    margin-right: 4px;
+    text-decoration: none;
+  }
+  
+  .comment-text {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  
+  .comment-actions {
+    color: gray;
+    font-size: 12px;
+  }
+  
+  .comment-actions span {
+    margin-right: 12px;
+    cursor: pointer;
+  }
+  
+  .comment-actions span:hover {
+    text-decoration: underline;
+  }

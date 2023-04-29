@@ -41,6 +41,11 @@ function Login() {
       }
     }
   };
+
+  const handleOnLogout = async (e) => {
+    localStorage.clear();
+  };
+
   return (
     <div>
       <div className="container">
@@ -69,6 +74,9 @@ function Login() {
             <a href="#">Forgot your password?</a>
             <button className="loginButton" onClick={handleOnLogin}>
               Login
+            </button>
+            <button className="loginButton" onClick={handleOnLogout}>
+              Logout
             </button>
           </form>
         </div>
