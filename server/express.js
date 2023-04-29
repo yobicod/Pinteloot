@@ -47,10 +47,10 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  user_create:{
-		type: String,
-		required: false,
-	},
+  user_create: {
+    type: String,
+    required: false,
+  },
   date: {
     type: Date,
     default: Date.now,
@@ -67,10 +67,8 @@ const CommentSchema = new mongoose.Schema({
 });
 const User = mongoose.model("users", UserSchema);
 const Post = mongoose.model("posts", PostSchema);
-const comment = mongoose.model("comments", CommentSchema);
-// User.createIndexes();
-// Post.createIndexes();
-// comment.createIndexes();
+
+const Comment = mongoose.model("comments", CommentSchema);
 
 mongoose.connection.on(
   "error",
@@ -120,7 +118,7 @@ app.post("/login", async (req, res) => {
       // localStorage.setItem("user", "test");
       res.send(user);
     } else {
-      res.send("Wrond id or password");
+      res.send("Wrong id or password");
     }
   } catch (e) {
     console.log(e);
@@ -161,13 +159,30 @@ app.post("/post", async (req, resp) => {
   }
 });
 
-app.get("/getAllPost", async(req, res) => {
-	try{
-		const allpost =  await Post.find({});
-		res.send({status: 'ok', data: allpost});
-	} catch (error){
-		console.log(error)
-	}
-})
+app.post("/report", async (req, res) => {
+  try {
+    const report = new Report(req.body);
+    let result = await report.save();
+    result = result.toObject;
+    if (result) {
+      res.send(req.body);
+      conosole.log(result);
+    } else {
+      console.log("Error saving report");
+    }
+  } catch (e) {
+    console.log(e);
+    res.send("Someting went wrong");
+  }
+});
+
+app.get("/getAllPost", async (req, res) => {
+  try {
+    const allpost = await Post.find({});
+    res.send({ status: "ok", data: allpost });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 app.listen(5000);
