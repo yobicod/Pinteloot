@@ -1,7 +1,7 @@
 // To connect with your mongoDB database
 const mongoose = require("mongoose");
 mongoose
-  .connect("mongodb://127.0.0.1:27017", {
+  .connect("mongodb://52.91.3.211:27017/", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     connectTimeoutMS: 30000,
