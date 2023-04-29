@@ -12,7 +12,6 @@ const Container = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   width: 236px;
-
   img {
     width: 100%;
     display: flex;
@@ -22,13 +21,14 @@ const Container = styled.div`
   }
 `;
 
-function Pin() {
+function Pin(data) {
+    console.log(data.data)
   return (
-    <Wrapper>
-      <Container>
-        <img src="https://i.pinimg.com/564x/26/47/17/264717dde03beb3473b525302f48cb12.jpg" />
-      </Container>
-    </Wrapper>
+        <Wrapper>
+            <Container>
+                <img src={data.data.img} />
+            </Container>
+        </Wrapper>
   );
 }
 
