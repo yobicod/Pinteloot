@@ -38,6 +38,8 @@ function Login() {
         setId("");
         setPassword("");
         localStorage.setItem("user", JSON.stringify(result));
+      } else {
+        console.log("Login unsuccessfull");
       }
     }
   };

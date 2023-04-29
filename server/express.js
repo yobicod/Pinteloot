@@ -1,7 +1,7 @@
 // To connect with your mongoDB database
 const mongoose = require("mongoose");
 mongoose
-  .connect("mongodb://52.91.3.211:27017/", {
+  .connect("mongodb://127.0.0.1:27017", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     connectTimeoutMS: 30000,
@@ -58,11 +58,17 @@ const PostSchema = new mongoose.Schema({
 });
 
 const CommentSchema = new mongoose.Schema({
-  account: {
+  pinId: {
     type: String,
+    required: true,
+  },
+  userCreateComment: {
+    type: String,
+    required: true,
   },
   text: {
     type: String,
+    required: true,
   },
 });
 const User = mongoose.model("users", UserSchema);
@@ -180,6 +186,15 @@ app.get("/getAllPost", async (req, res) => {
   try {
     const allpost = await Post.find({});
     res.send({ status: "ok", data: allpost });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/getAllComment", async (req, res) => {
+  try {
+    const allComment = await Comment.find({});
+    res.send({ status: "ok", data: allComment });
   } catch (error) {
     console.log(error);
   }

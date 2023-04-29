@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  BrowserRouter,
+  useNavigate,
+} from "react-router-dom";
 import Modal from "./Modal";
 
 const Wrapper = styled.div`
@@ -29,7 +36,7 @@ function Pin(data) {
   const handleClick = () => {
     navigate("/Modal", { state: { data } });
   };
-    
+
   return (
     <Wrapper>
       <Routes>
@@ -42,3 +49,4 @@ function Pin(data) {
   );
 }
 
+export default Pin;
