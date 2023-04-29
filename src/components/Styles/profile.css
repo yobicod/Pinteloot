@@ -130,6 +130,7 @@ body.active-modal {
 }
 
 .img_profile:hover .imgpost {
+  cursor: zoom-in;
   opacity: 0.3;
 }
 
