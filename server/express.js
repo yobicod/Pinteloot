@@ -9,7 +9,7 @@ mongoose
   .then(() => console.log("Connected to Your_db database"))
   .catch((err) => console.log(err));
 
-// Schema for users of app
+// Schema for users of ap*+..35\
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -121,7 +121,7 @@ app.post("/login", async (req, res) => {
 
 app.post("/comment", async (req, res) => {
   try {
-    const { acc, text } = req.body;
+    const comment = new Comment(req.body);
     let result = await comment.save();
     result = result.toObject();
     if (result) {
