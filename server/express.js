@@ -53,7 +53,7 @@ const PostSchema = new mongoose.Schema({
   },
 });
 
-const CommentSchema = new mongoose.schema({
+const CommentSchema = new mongoose.Schema({
   account: {
     type: String,
   },
@@ -63,7 +63,7 @@ const CommentSchema = new mongoose.schema({
 });
 const User = mongoose.model("users", UserSchema);
 const Post = mongoose.model("posts", PostSchema);
-const comment = mongoose.model("comments", CommentSchemas);
+const Comment = mongoose.model("comments", CommentSchema);
 mongoose.connection.on(
   "error",
   console.error.bind(console, "MongoDB connection error:")
@@ -153,4 +153,20 @@ app.post("/post", async (req, resp) => {
   }
 });
 
+app.post("/report", async (req, res) => {
+  try {
+    const report = new Report(req.body);
+    let result = await report.save();
+    result = result.toObject;
+    if (result) {
+      res.send(req.body);
+      conosole.log(result);
+    } else {
+      console.log("Error saving report");
+    }
+  } catch (e) {
+    console.log(e);
+    res.send("Someting went wrong");
+  }
+});
 app.listen(5000);
