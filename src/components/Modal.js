@@ -1,16 +1,20 @@
 import React from "react";
-
+import { useLocation } from "react-router-dom";
 import "../components/Styles/Modal_style.css";
 import Comments from "./Comments";
 
 function Modal() {
+
+    const location = useLocation();
+    const data = location.state?.data;
+    console.log(data);
 
     return (
         <div className="add_pin_modal">
             <div className="add_pin_container">
                 <div className="side" id="left_side">
                     <div className="section2">
-                        <img src="https://i.pinimg.com/564x/56/28/c8/5628c814344875a80fcce2272d4621ff.jpg" className="modals_pin"/>
+                        <img src={data.data.img} className="modals_pin"/>
                     </div>
                 </div>
 
@@ -22,7 +26,7 @@ function Modal() {
                     </div>
                     <div className="section2">
                         <div className="title_image">
-                            <h1>title of image</h1>
+                            <h1>{data.data.Title}</h1>
                         </div>
                         <div className="account">
                             <img src="https://via.placeholder.com/150" alt="Profile Picture" width = "30" height = "30" style={{ marginRight: "4%", borderRadius:"100%"}}/>
