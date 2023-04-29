@@ -79,7 +79,8 @@ function Createpin() {
         const MyDropzone = ({index, pictures}) => {
           const {getRootProps, getInputProps, isDragActive} = useDropzone({
             
-            accept:{"image/*": [".png", ".gif", ".jpeg", ".jpg"],},
+            accept:{"image/*": [".png", ".gif", ".jpeg", ".jpg"],
+            "video/*":[".mp3", ".mp4"],},
             
             onDrop:(acceptedFiles) => {
                 console.log(pictures)

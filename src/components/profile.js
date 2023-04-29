@@ -2,6 +2,8 @@ import React,{ useState, useEffect } from "react"
 import "./Styles/profile.css"
 import {v4 as uuidv4} from 'uuid'
 import Avatar from '../Images/img_avatar.png'
+import { saveAs } from 'file-saver'
+import { FiDownload } from 'react-icons/fi';
 //profile test
 function Profile() {
     console.log("Render Profile")
@@ -25,23 +27,50 @@ function Profile() {
         });
     }, []);
 
-    
+    const downloadImage = (url) => {
+      saveAs(url) // Put your image url here.
+    }
 
     const Imgcreate = () =>{
         return(
           createPost.map((value, index) =>{
             if (value.user_create === user._id) {
-              return(
-                <img
-                className="imgpost"
-                src={value.img}
-                style={{width:'250px', height:'380px', margin:'25px 15px'}}
-                ></img> 
-            )  
+                if (value.img.slice(0, 10) === 'data:image') {
+                    return(
+                        <div className="img_profile" key={index+1}>
+                            <img
+                            className="imgpost"
+                            src={value.img}
+                            style={{width:'250px', height:'380px', margin:'25px 15px'}}
+                            >
+                            </img>
+                            <button className="btn_dowload" onClick={() => downloadImage(value.img)}>
+                            <FiDownload style={{width:'20px', height:'20px'}}/></button>
+                        </div>
+                    )  
+                }
+                else{
+                    return(
+                        <div className="img_profile" key={index+1}>
+                            <video
+                            className="imgpost"
+                            width="270px" 
+                            height="390px" 
+                            controls>
+                                <source src={value.img} />
+                            </video>
+                            <button className="btn_dowload" onClick={() => downloadImage(value.img)}>
+                            <FiDownload style={{width:'20px', height:'20px'}}/></button>
+                        </div>
+                    )  
+                }
+
             }else{}    
         })  
         )   
     }
+
+    
 
     return(
         <div className="profile-container">
