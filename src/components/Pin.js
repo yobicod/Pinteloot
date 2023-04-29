@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import "./Styles/pin.css";
 import {
   BrowserRouter as Router,
   Routes,
@@ -38,7 +39,7 @@ function Pin(data) {
   };
 
   return (
-    <Wrapper>
+    <Wrapper className="pin-container">
       <Routes>
         <Route path="/Modal" element={<Modal />} exact />
       </Routes>
