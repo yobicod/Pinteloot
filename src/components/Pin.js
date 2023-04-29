@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter, useNavigate } from "react-router-dom";
+import Modal from "./Modal";
 
 const Wrapper = styled.div`
 display: inline-flex;
@@ -22,14 +24,21 @@ const Container = styled.div`
 `;
 
 function Pin(data) {
-    console.log(data.data)
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/Modal", { state: { data } });
+  };
+    
   return (
-        <Wrapper>
-            <Container>
-                <img src={data.data.img} />
-            </Container>
-        </Wrapper>
+    <Wrapper>
+      <Routes>
+        <Route path="/Modal" element={<Modal />} exact />
+      </Routes>
+      <Container onClick={handleClick}>
+        <img src={data.data.img} />
+      </Container>
+    </Wrapper>
   );
 }
 
-export default Pin;

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Pin from "./Pin";
 import React,{ useState, useEffect } from "react"
 import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter } from "react-router-dom";
-
 const Wrapper = styled.div`
   background-color: white;
   display: flex;
@@ -48,4 +47,3 @@ function Mainboard() {
         </Wrapper>
     )
 }
-export default Mainboard
