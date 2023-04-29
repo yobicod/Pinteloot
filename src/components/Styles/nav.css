@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+  transform: scale(0.9);
 }
 
 .navBtn {
@@ -17,6 +18,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  padding-right: 20px;
 }
 
 .nav {

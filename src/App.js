@@ -56,5 +56,8 @@ function App() {
     </div>
   );
 }
-
+<script
+  src="https://kit.fontawesome.com/2cb51aab6c.js"
+  crossorigin="anonymous"
+></script>;
 export default App;

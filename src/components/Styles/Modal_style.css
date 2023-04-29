@@ -157,7 +157,7 @@
 }
 
 .comment {
-  height: 250px;
+  height: auto;
   overflow-y: hidden;
   padding-top: 5px;
 }
@@ -178,4 +178,28 @@
 .pin-comment-container {
   /* background-color: red; */
   overflow-y: auto;
+}
+
+#left_side .section1 {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#left_side .section1 .select_size {
+  width: 236px;
+  height: 40px;
+
+  display: flex;
+}
+
+#left_side .section1 .select_size .exit {
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 35px;
+  font-weight: 700;
+  cursor: pointer;
 }

@@ -22,7 +22,14 @@ const Container = styled.div`
   width: 100%;
   column-gap: 10px;
   height: 100%;
-  align-item: flex-start;
+  diplay: flex;
+  flex-wrap: wrap;
+  column-count: 5;
+  column-gap: 10px;
+  margin: 0 auto;
+  height: 100%;
+  max-width: 1260px;
+  background-color: white;
 `;
 
 function Mainboard() {

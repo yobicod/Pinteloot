@@ -15,12 +15,14 @@ function Comments(props) {
           height="30"
           style={{ marginRight: "2%", borderRadius: "100%" }}
         />
-        <span class="comment-author" style={{ "font-size": "1.2em" }}>
+        <span class="comment-author" style={{ "font-size": "14px" }}>
           {comment.userCreateComment}
         </span>
       </div>
       <div class="comment-details">
-        <p class="comment-text">{comment.text}</p>
+        <p class="comment-text" style={{ "font-size": "12px" }}>
+          {comment.text}
+        </p>
         <div class="comment-actions"></div>
       </div>
     </div>

@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "../components/Styles/Modal_style.css";
 import Comments from "./Comments";
-
+import { saveAs } from "file-saver";
+import { Link } from "react-router-dom";
 function Modal() {
   const user = JSON.parse(localStorage.getItem("user"));
   const location = useLocation();
   const data = location.state?.data;
 
-  //   console.log(user);
+  console.log(data);
   const pinId = data.data._id;
+  // const userCreateName = data.data.userCreateName;
   const userCreateComment = user.name;
 
   const [allComment, setAllComment] = useState([]);
@@ -43,6 +45,10 @@ function Modal() {
     }
   };
 
+  const downloadImage = (url) => {
+    saveAs(url); // Put your image url here.
+  };
+
   useEffect(() => {
     fetch("http://localhost:5000/getAllComment", {
       method: "GET",
@@ -58,6 +64,13 @@ function Modal() {
     <div className="add_pin_modal">
       <div className="add_pin_container">
         <div className="side" id="left_side">
+          <div className="section1">
+            <div className="select_size">
+              <Link to="/" style={{ "text-decoration": "none" }}>
+                <div className="exit">👋</div>
+              </Link>
+            </div>
+          </div>
           <div className="section2">
             <img src={data.data.img} className="modals_pin" />
           </div>
@@ -66,7 +79,12 @@ function Modal() {
         <div className="side" id="right_side">
           <div className="section1">
             <div className="select_size">
-              <div className="save_image">Save image</div>
+              <div
+                className="save_image"
+                onClick={() => downloadImage(data.data.img)}
+              >
+                Save image
+              </div>
             </div>
           </div>
           <div className="section2">
@@ -81,7 +99,9 @@ function Modal() {
                 height="30"
                 style={{ marginRight: "4%", borderRadius: "100%" }}
               />
-              <span style={{ "font-size": "1.5em" }}>{user.name}</span>
+              <span style={{ "font-size": "1.5em" }}>
+                {data.data.user_create_name}
+              </span>
             </div>
             <div className="pin-comment-container">
               {allComment.map((x) => {
