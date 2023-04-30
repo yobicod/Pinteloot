@@ -56,7 +56,7 @@ button:hover {
 /* modal for edit profile */
 
 body.active-modal {
-  overflow-y: hidden;
+  overflow-y: auto;
   z-index: 10;
 }
 
@@ -84,6 +84,7 @@ body.active-modal {
   background: rgba(49, 49, 49, 0.8);
   z-index: 10;
 }
+
 .modal-content {
   position: absolute;
   top: 40%;

@@ -11,11 +11,57 @@ function Profile() {
 
   const user = JSON.parse(localStorage.getItem("user"));
   const [modal, setModal] = useState(false);
+  const [editPost, setEditPost] = useState(false);
+  const [dataEdit, setDataEdit] = useState({})
   const [createPost, setCreatePost] = useState([]);
 
   const toggleModal = () => {
     setModal(!modal);
   };
+
+  const toggleEdit = (value) =>{
+    setDataEdit(value)
+    setEditPost(!editPost);
+  }
+
+  const changeTitle = (event) =>{
+    const newInputValues = dataEdit;
+    const newEditValues = {
+      Title: event.target.value,
+      Description: newInputValues.Description,
+      Link: newInputValues.Link,
+      img: newInputValues.img,
+      user_create: newInputValues.user_create,
+      user_create_name: newInputValues.user_create_name,
+    };
+    setDataEdit(newEditValues);
+  }
+
+  const changeDescription = (event) =>{
+    const newInputValues = dataEdit;
+    const newEditValues = {
+      Title: newInputValues.Title,
+      Description: event.target.value,
+      Link: newInputValues.Link,
+      img: newInputValues.img,
+      user_create: newInputValues.user_create,
+      user_create_name: newInputValues.user_create_name,
+    };
+    setDataEdit(newEditValues);
+  }
+
+  const changeLink = (event) =>{
+    const newInputValues = dataEdit;
+    const newEditValues = {
+      Title: newInputValues.Title,
+      Description: newInputValues.Description,
+      Link: event.target.value,
+      img: newInputValues.img,
+      user_create: newInputValues.user_create,
+      user_create_name: newInputValues.user_create_name,
+    };
+    setDataEdit(newEditValues);
+  }
 
   useEffect(() => {
     fetch("http://localhost:5000/getAllPost", {
@@ -52,11 +98,14 @@ function Profile() {
 
               <button
                 className="btn_edit"
-                onClick={() => downloadImage(value.img)}  
+                onClick={() => toggleEdit(value)}  
               >
                 <FiEdit3 style={{ width: "20px", height: "20px" }} />
               </button>
             </div>
+
+            
+            
           );
         } else {
           return (
@@ -73,11 +122,10 @@ function Profile() {
 
               <button
                 className="btn_edit"
-                onClick={() => downloadImage(value.img)}  
+                onClick={toggleEdit}  
               >
                 <FiEdit3 style={{ width: "20px", height: "20px" }} />
               </button>
-
             </div>
           );
         }
@@ -97,7 +145,8 @@ function Profile() {
               </div>
               <h2>Hello Modal</h2>
               <p>Name:</p>
-              <input type="text"></input>
+             <input type="text"   
+              ></input>
 
               <p>Lastname:</p>
               <input type="text"></input>
@@ -111,6 +160,49 @@ function Profile() {
           </div>
         </div>
       )}
+
+      {editPost && (
+        <div className="modal">
+          <div className="overlay">
+            <div className="modal-content">
+              <div className="img-profile">
+                <img className="avatar-edit" src={Avatar}></img>
+              </div>
+                    <h2>Edit Post</h2> 
+
+                    <p>Title:</p>
+                    <input type="text" 
+                      value={dataEdit.Title}
+                      onChange={changeTitle}
+                    ></input>
+
+                    <p>Description:</p>
+                    <input type="text" 
+                      value={dataEdit.Description}
+                      onChange={changeDescription}
+                    ></input>
+
+                    <p>Link:</p>
+                    <input type="text" 
+                      value={dataEdit.Link}
+                      onChange={changeLink}
+                    ></input>
+
+                    <p></p>
+                      <button
+                        className="button-profile"
+                        onClick={() => toggleEdit()}
+                      >Summit change</button>
+
+                      <button
+                        className="close-modal button-profile"
+                        onClick={() => toggleEdit()}
+                      >Close</button>
+
+                    </div>
+                  </div>
+                </div>
+              )}
 
       <div className="profile-div">
         <div className="img-profile">
