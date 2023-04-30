@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import Avatar from "../Images/img_avatar.png";
 import { saveAs } from "file-saver";
 import { FiDownload } from "react-icons/fi";
+import { FiEdit3 } from "react-icons/fi";
 //profile test
 function Profile() {
   console.log("Render Profile");
@@ -48,6 +49,13 @@ function Profile() {
               >
                 <FiDownload style={{ width: "20px", height: "20px" }} />
               </button>
+
+              <button
+                className="btn_edit"
+                onClick={() => downloadImage(value.img)}  
+              >
+                <FiEdit3 style={{ width: "20px", height: "20px" }} />
+              </button>
             </div>
           );
         } else {
@@ -62,6 +70,14 @@ function Profile() {
               >
                 <FiDownload style={{ width: "20px", height: "20px" }} />
               </button>
+
+              <button
+                className="btn_edit"
+                onClick={() => downloadImage(value.img)}  
+              >
+                <FiEdit3 style={{ width: "20px", height: "20px" }} />
+              </button>
+
             </div>
           );
         }

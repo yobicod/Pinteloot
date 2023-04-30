@@ -129,6 +129,19 @@ body.active-modal {
   z-index: 2;
 }
 
+.btn_edit {
+  display: none;
+  position: relative;
+  top: -129px;
+  left: 165px;
+  width: 40px;
+  height: 40px;
+  background-color: green;
+  border: none;
+  border-radius: 12px;
+  z-index: 2;
+}
+
 .img_profile:hover .imgpost {
   cursor: zoom-in;
   opacity: 0.3;
@@ -138,7 +151,17 @@ body.active-modal {
   display: block;
 }
 
+.img_profile:hover .btn_edit {
+  display: block;
+}
+
 .btn_dowload:hover {
+  background-color: blue;
+  transition: 0.5s;
+  animation: gelatine 0.5s infinite;
+}
+
+.btn_edit:hover {
   background-color: blue;
   transition: 0.5s;
   animation: gelatine 0.5s infinite;
