@@ -1,15 +1,50 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./Styles/reportPin.css";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  BrowserRouter,
+  useNavigate,
+} from "react-router-dom";
 function ReportPin() {
+  const location = useLocation();
+  const data = location.state?.dataToReport;
+  console.log(typeof data);
   const [reportType, setReportType] = useState("");
+  // console.log(reportType);
   const onChangeValue = (event) => {
     setReportType(event.target.value);
   };
-  const submitReport = () => {
-    alert(reportType);
+  const submitReport = async (e) => {
+    const dataObj = {
+      pinData: data,
+      type: reportType,
+    };
+    if (reportType.length > 0) {
+      e.preventDefault();
+      let result = await fetch("http://localhost:5000/report", {
+        method: "post",
+        body: JSON.stringify(dataObj),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      result = await result.json();
+      console.warn(result);
+      if (result) {
+        alert("Data saved succesfully");
+      }
+      window.location.href = "/";
+    } else {
+      alert("Please select report type");
+    }
   };
   const cancelReport = () => {
-    console.log("Cancel");
+    window.location.href = "/";
   };
 
   return (
@@ -41,18 +76,6 @@ function ReportPin() {
           </div>
           <div className="formControl">
             <input type="radio" value="Self-harm" name="Report Type" />
-            Hateful-activities
-            <p className="radio-description">Prejudices</p>
-          </div>
-          <div className="formControl">
-            <input type="radio" value="Self-harm" name="Report Type" />
-            Dangerous goods
-            <p className="radio-description">
-              Drugs, weapons, regulated products
-            </p>
-          </div>
-          <div className="formControl">
-            <input type="radio" value="Self-harm" name="Report Type" />
             Harassment on critism
             <p className="radio-description">Insults, threat</p>
           </div>
@@ -61,20 +84,6 @@ function ReportPin() {
             Graphic violence
             <p className="radio-description">
               Violence images or promotion of violence
-            </p>
-          </div>
-          <div className="formControl">
-            <input type="radio" value="Self-harm" name="Report Type" />
-            Privacy violation
-            <p className="radio-description">
-              Private photos, personal information
-            </p>
-          </div>
-          <div className="formControl">
-            <input type="radio" value="Self-harm" name="Report Type" />
-            My intelluctual property
-            <p className="radio-description">
-              Copyright or trademark infringement
             </p>
           </div>
         </div>

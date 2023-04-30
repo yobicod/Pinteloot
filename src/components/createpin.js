@@ -96,6 +96,7 @@ function Createpin() {
             user_create_name: "",
           },
         ]);
+        window.location.href = "/";
       }
     });
   };

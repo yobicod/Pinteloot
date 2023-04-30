@@ -75,10 +75,22 @@ const CommentSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+const ReportSchema = new mongoose.Schema({
+  pinData: {
+    type: Object,
+    required: true,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+});
+
 const User = mongoose.model("users", UserSchema);
 const Post = mongoose.model("posts", PostSchema);
-
 const Comment = mongoose.model("comments", CommentSchema);
+const Report = mongoose.model("reports", ReportSchema);
 
 mongoose.connection.on(
   "error",
@@ -143,6 +155,7 @@ app.post("/comment", async (req, res) => {
     if (result) {
       res.send(req.body);
       console.log(result);
+      console.log("Report Successful");
     } else {
       console.log("Error saving comment");
     }
@@ -169,17 +182,33 @@ app.post("/post", async (req, resp) => {
   }
 });
 
+// app.post("/report", async (req, res) => {
+//   try {
+//     const report = new Report(req.body);
+//     let result = await report.save();
+//     result = result.toObject;
+//     if (result) {
+//       res.send(req.body);
+//       conosole.log(result);
+//     } else {
+//       console.log("Error saving report");
+//     }
+//   } catch (e) {
+//     console.log(e);
+//     res.send("Someting went wrong");
+//   }
+// });
 app.post("/report", async (req, res) => {
   try {
     const report = new Report(req.body);
     let result = await report.save();
     result = result.toObject;
     if (result) {
-      res.send(req.body);
-      conosole.log(result);
+      console.log(result);
     } else {
       console.log("Error saving report");
     }
+    res.send(req.body);
   } catch (e) {
     console.log(e);
     res.send("Someting went wrong");
@@ -199,6 +228,15 @@ app.get("/getAllComment", async (req, res) => {
   try {
     const allComment = await Comment.find({});
     res.send({ status: "ok", data: allComment });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/getAllReport", async (req, res) => {
+  try {
+    const allReport = await Report.find({});
+    res.send({ status: "ok", data: allReport });
   } catch (error) {
     console.log(error);
   }
