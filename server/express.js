@@ -242,4 +242,23 @@ app.get("/getAllReport", async (req, res) => {
   }
 });
 
+app.put("/editpost/:id", async (req, res) => {
+  console.log(req)
+  try {
+    const id = req.params.id;
+    const update = req.body;
+    const result = await Post.findByIdAndUpdate(id, update, { new: true });
+    if (result) {
+      console.log(result);
+      res.send(result);
+    } else {
+      console.log("Error updating post");
+      res.status(404).send("Post not found");
+    }
+  } catch (e) {
+    console.log(e);
+    res.send("Something went wrong");
+  }
+});
+
 app.listen(5000);

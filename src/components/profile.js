@@ -20,6 +20,7 @@ function Profile() {
   };
 
   const toggleEdit = (value) =>{
+    console.log(value)
     setDataEdit(value)
     setEditPost(!editPost);
   }
@@ -33,6 +34,7 @@ function Profile() {
       img: newInputValues.img,
       user_create: newInputValues.user_create,
       user_create_name: newInputValues.user_create_name,
+      _id:newInputValues._id
     };
     setDataEdit(newEditValues);
   }
@@ -46,6 +48,7 @@ function Profile() {
       img: newInputValues.img,
       user_create: newInputValues.user_create,
       user_create_name: newInputValues.user_create_name,
+      _id:newInputValues._id
     };
     setDataEdit(newEditValues);
   }
@@ -59,6 +62,7 @@ function Profile() {
       img: newInputValues.img,
       user_create: newInputValues.user_create,
       user_create_name: newInputValues.user_create_name,
+      _id:newInputValues._id
     };
     setDataEdit(newEditValues);
   }
@@ -77,6 +81,26 @@ function Profile() {
   const downloadImage = (url) => {
     saveAs(url); // Put your image url here.
   };
+
+  const handleOnsummitEdit = async (e) => {
+    try {
+      const response = await fetch(`http://localhost:5000/editpost/${dataEdit._id}`, {
+        method: "PUT",
+        body: JSON.stringify(dataEdit),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const result = await response.json();
+      console.log(result);
+      setDataEdit({})
+      window.location.href = "/profile";
+      // handle success
+    } catch (error) { 
+      console.error(error);
+      // handle error
+    }
+  }
 
   const Imgcreate = () => {
     return createPost.map((value, index) => {
@@ -166,7 +190,7 @@ function Profile() {
           <div className="overlay">
             <div className="modal-content">
               <div className="img-profile">
-                <img className="avatar-edit" src={Avatar}></img>
+                <img className="avatar-edit" src={dataEdit.img}></img>
               </div>
                     <h2>Edit Post</h2> 
 
@@ -191,11 +215,11 @@ function Profile() {
                     <p></p>
                       <button
                         className="button-profile"
-                        onClick={() => toggleEdit()}
+                        onClick={() => handleOnsummitEdit()}
                       >Summit change</button>
 
                       <button
-                        className="close-modal button-profile"
+                        className="close-modal button-close"
                         onClick={() => toggleEdit()}
                       >Close</button>
 
