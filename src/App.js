@@ -8,6 +8,7 @@ import Mainboard from "./components/mainboard";
 import Profile from "./components/profile";
 import Pin from "./components/Pin";
 import Modal from "./components/Modal";
+import ReportPin from "./components/reportPin";
 import {
   BrowserRouter as Router,
   Routes,
@@ -37,10 +38,10 @@ function App() {
             <Route path="/login" element={<Login />} exact></Route>
           </Route>
           <Route>
-            <Route path="/rgister" element={<Register />} exact></Route>
+            <Route path="/register" element={<Register />} exact></Route>
           </Route>
           <Route>
-            <Route path="/admin" element={<Register />} exact></Route>
+            <Route path="/admin" element={<Admin />} exact></Route>
           </Route>
           <Route>
             <Route path="/profile" element={<Profile />} exact></Route>
@@ -51,13 +52,13 @@ function App() {
           <Route>
             <Route path="/modal" element={<Modal />} exact></Route>
           </Route>
+          <Route>
+            <Route path="/report" element={<ReportPin />} exact></Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
-<script
-  src="https://kit.fontawesome.com/2cb51aab6c.js"
-  crossorigin="anonymous"
-></script>;
+
 export default App;

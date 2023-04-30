@@ -50,9 +50,12 @@ function Mainboard() {
   return (
     <Wrapper>
       <Container>
-        {allPost.map((value, index) => {
-          return <Pin key={index} data={value} />;
-        })}
+        {allPost
+          .slice(0)
+          .reverse()
+          .map((value, index) => {
+            return <Pin key={index} data={value} />;
+          })}
       </Container>
     </Wrapper>
   );
