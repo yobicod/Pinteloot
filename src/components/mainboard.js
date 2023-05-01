@@ -9,7 +9,7 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 const Wrapper = styled.div`
-  background-color: white;
+  background-color: #fff;
   display: flex;
   width: 100%;
   height: 100%;

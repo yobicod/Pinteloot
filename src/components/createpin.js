@@ -197,7 +197,7 @@ function Createpin() {
               <input
                 className="descrip"
                 type="text"
-                placeholder="Tell every one you pin is about 😊"
+                placeholder="Tell every one your pin is about 😊"
                 onChange={(description) => inputDescription(description, index)}
                 value={value.Description}
               ></input>
