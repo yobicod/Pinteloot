@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import "./Styles/createpin.css";
 import { v4 as uuidv4 } from "uuid";
+import Nav from "./nav";
 
 function Createpin() {
   console.log("Rendered create");
@@ -180,6 +181,7 @@ function Createpin() {
   return inputValues.map((value, index) => {
     return (
       <div className="div-first">
+        <Nav />
         <div className="container-post">
           <MyDropzone pictures={value.img} index={index} />
 

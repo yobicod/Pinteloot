@@ -13,6 +13,8 @@ import {
   BrowserRouter,
   useNavigate,
 } from "react-router-dom";
+import Nav from "./nav";
+
 import editBtn from "../Images/pencil.png";
 //profile test
 function Profile() {
@@ -189,6 +191,7 @@ function Profile() {
 
   return (
     <div className="profile-container">
+      <Nav />
       {modal && (
         <div className="modal">
           <div className="overlay">

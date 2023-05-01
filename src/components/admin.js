@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import viewBtn from "../Images/analytics.png";
 import banBtn from "../Images/ban.png";
+import Nav from "./nav";
 function Admin() {
   const navigate = useNavigate();
   const [paneOption, setPaneOption] = useState("");
@@ -63,6 +64,7 @@ function Admin() {
         console.log(data, "postdata");
         // setCreatePost(data.data);
       });
+    window.location.href = "/admin";
   };
   useEffect(() => {
     fetch("http://localhost:5000/getAllReport", {
@@ -77,6 +79,7 @@ function Admin() {
   }, []);
   return (
     <div className="admin-container">
+      <Nav />
       <div className="panel">
         <div className="left-panel">
           <p className="admin-text">Admin</p>

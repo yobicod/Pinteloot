@@ -9,6 +9,8 @@ import closeBtn from "../Images/close.png";
 import reportBtn from "../Images/warning.png";
 import dowloadBtn from "../Images/download.png";
 import editBtn from "../Images/pencil.png";
+// import Nav from "./nav";
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -167,6 +169,7 @@ function Modal() {
 
   return (
     <div className="add_pin_modal">
+      {/* <Nav /> */}
       <div className="add_pin_container">
         <div className="side" id="left_side">
           <div className="section1">

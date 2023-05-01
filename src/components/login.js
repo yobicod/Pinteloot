@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Styles/login.css";
+
 function Login() {
   console.log("Rendered login");
   const [id, setId] = useState("");
@@ -57,8 +58,10 @@ function Login() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        flexDirection: "column",
       }}
     >
+      {/* <Nav /> */}
       <div className="containerr">
         <div className="loginContainer">
           <form>

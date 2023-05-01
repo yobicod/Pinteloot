@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Nav from "./nav";
+
 function Register() {
   console.log("Rendered login");
   const [email, setEmail] = useState("");
