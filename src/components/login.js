@@ -49,8 +49,17 @@ function Login() {
   };
 
   return (
-    <div>
-      <div className="container">
+    <div
+      style={{
+        width: "100%",
+        height: "700px",
+        // backgroundColor: "red",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div className="containerr">
         <div className="loginContainer">
           <form>
             <div className="formControl">

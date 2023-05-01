@@ -26,6 +26,7 @@
 
 .button-share {
   margin-right: 20px;
+  width: 89px;
 }
 
 .button-profile {
@@ -36,7 +37,7 @@
   background-color: aqua;
 }
 
-.button-close{
+.button-close {
   font: 14px bold;
   height: 30px;
   border-radius: 12px;
@@ -44,7 +45,7 @@
   background-color: aqua;
 }
 
-.button-close:hover{
+.button-close:hover {
   background-color: red;
 }
 
@@ -135,7 +136,7 @@ body.active-modal {
   left: 215px;
   width: 40px;
   height: 40px;
-  background-color: green;
+  background-color: rgb(194, 194, 194);
   border: none;
   border-radius: 12px;
   z-index: 2;
@@ -168,16 +169,16 @@ body.active-modal {
 }
 
 .btn_dowload:hover {
-  background-color: blue;
+  background-color: grey;
   transition: 0.5s;
   animation: gelatine 0.5s infinite;
 }
 
-.btn_edit:hover {
+/* .btn_edit:hover {
   background-color: blue;
   transition: 0.5s;
   animation: gelatine 0.5s infinite;
-}
+} */
 
 @keyframes gelatine {
   from,

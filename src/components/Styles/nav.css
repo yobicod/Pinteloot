@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-  transform: scale(0.9);
+  transform: scale(0.95);
 }
 
 .navBtn {
@@ -36,8 +36,13 @@
   background-color: #fff;
 }
 
+.createTxt {
+  font-size: 1.4em;
+  text-decoration: none;
+}
 .homeTxt {
   color: #fff;
+  font-size: 1.4em;
 }
 
 .searchBox {

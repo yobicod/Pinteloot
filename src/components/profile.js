@@ -13,6 +13,7 @@ import {
   BrowserRouter,
   useNavigate,
 } from "react-router-dom";
+import editBtn from "../Images/pencil.png";
 //profile test
 function Profile() {
   console.log("Render Profile");
@@ -152,9 +153,9 @@ function Profile() {
                   <FiDownload style={{ width: "20px", height: "20px" }} />
                 </button>
 
-                <button className="btn_edit" onClick={() => toggleEdit(value)}>
+                {/* <button className="btn_edit" onClick={() => toggleEdit(value)}>
                   <FiEdit3 style={{ width: "20px", height: "20px" }} />
-                </button>
+                </button> */}
               </div>
             );
           } else {
@@ -269,10 +270,14 @@ function Profile() {
           <h2>{user.name}</h2>
         </div>
         <div className="profile-button">
-          <button className="button-share button-profile">Share</button>
-          <button className="button-profile" onClick={toggleModal}>
-            Edit profile
-          </button>
+          {/* <button className="button-share button-profile">Share</button>
+           */}
+          <img
+            src={editBtn}
+            onClick={toggleModal}
+            style={{ cursor: "pointer" }}
+          ></img>
+          {/* <button className="button-profile">Edit profile</button> */}
         </div>
         <h2 style={{ marginTop: "3%" }}>My post</h2>
       </div>

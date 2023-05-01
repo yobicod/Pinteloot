@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import "../components/Styles/Modal_style.css";
+// import "../components/Styles/Modal_style.css";
+import "./Styles/Modal_style.css";
 import { saveAs } from "file-saver";
 import Comments from "./Comments";
 import ReportPin from "./reportPin";
 import closeBtn from "../Images/close.png";
+import reportBtn from "../Images/warning.png";
+import dowloadBtn from "../Images/download.png";
+import editBtn from "../Images/pencil.png";
 import {
   BrowserRouter as Router,
   Routes,
@@ -117,7 +121,7 @@ function Modal() {
       // handle error
     }
   };
-  
+
   // modal edit
 
   const inputComment = (event) => {
@@ -160,8 +164,6 @@ function Modal() {
       });
   }, [allComment]);
   // console.log(allComment);
-  
-
 
   return (
     <div className="add_pin_modal">
@@ -176,9 +178,8 @@ function Modal() {
                   className="close-btn"
                 />
               </Link>
-              
             </div>
-          </div> 
+          </div>
           <div className="section2">
             <img src={data.data.img} className="modals_pin" />
           </div>
@@ -186,22 +187,40 @@ function Modal() {
 
         <div className="side" id="right_side">
           <div className="section1">
-
-            {data.data.user_create === user._id ?
-            <div className="edit-post">
-              <div className="edit" onClick={() => toggleEdit(data.data)}>Edit Post</div>
-            </div>:<div></div>
-          }
+            {data.data.user_create === user._id ? (
+              <div
+                className="edit-post"
+                style={{
+                  backgroundColor: "#fff",
+                  cursor: "context-menu",
+                }}
+              >
+                <div className="edit"></div>
+              </div>
+            ) : (
+              <div></div>
+            )}
 
             <div className="select_size">
               <div
-                className="save_image"
-                onClick={() => downloadImage(data.data.img)}
+                className="report"
+                onClick={() => {
+                  toggleEdit(data.data);
+                }}
               >
-                Save image
+                <img src={editBtn}></img>
               </div>
+              <div
+                className="report"
+                onClick={() => {
+                  downloadImage(data.data.img);
+                }}
+              >
+                <img src={dowloadBtn}></img>
+              </div>
+
               <div className="report" onClick={gotoReport}>
-                <div>📝</div>
+                <img src={reportBtn}></img>
               </div>
             </div>
           </div>
@@ -217,13 +236,9 @@ function Modal() {
                 height="30"
                 style={{ marginRight: "4%", borderRadius: "100%" }}
               />
-<<<<<<< HEAD
-              <span style={{ "font-size": "1.5em" }}>{data.data.user_create_name}</span>
-=======
               <span style={{ "font-size": "1em", opacity: 0.5 }}>
                 Create by {user.name}
               </span>
->>>>>>> 815eeab9e1815d726605c7ce9d6ccf8565379ce4
             </div>
             <div className="pin-comment-container">
               {allComment.map((x) => {
@@ -247,11 +262,17 @@ function Modal() {
           </div>
         </div>
       </div>
-      
+
       {editPost && (
         <div className="modal">
           <div className="overlay">
-            <div className="modal-content">
+            <div
+              className="modal-content"
+              style={{
+                padding: "50px",
+                "border-radius": "20px",
+              }}
+            >
               <div className="img-profile">
                 <img className="avatar-edit" src={dataEdit.img}></img>
               </div>
@@ -262,6 +283,12 @@ function Modal() {
                 type="text"
                 value={dataEdit.Title}
                 onChange={changeTitle}
+                style={{
+                  height: "25px",
+                  padding: "5px",
+                  outline: "none",
+                  border: "none",
+                }}
               ></input>
 
               <p>Description:</p>
@@ -269,6 +296,12 @@ function Modal() {
                 type="text"
                 value={dataEdit.Description}
                 onChange={changeDescription}
+                style={{
+                  height: "25px",
+                  padding: "5px",
+                  outline: "none",
+                  border: "none",
+                }}
               ></input>
 
               <p>Link:</p>
@@ -276,18 +309,30 @@ function Modal() {
                 type="text"
                 value={dataEdit.Link}
                 onChange={changeLink}
+                style={{
+                  height: "25px",
+                  padding: "5px",
+                  outline: "none",
+                  border: "none",
+                }}
               ></input>
 
               <p></p>
               <button
-                className="button-profile"
+                className="button-profilee"
                 onClick={() => handleOnsummitEdit()}
               >
-                Summit change
+                Submit change
               </button>
-
-              <button
+              {/* <img
                 className="close-modal button-close"
+                style={{
+                  width: "15px",
+                }}
+                onClick={() => toggleEdit()}
+              ></img> */}
+              <button
+                className="close-modal button-closee"
                 onClick={() => toggleEdit()}
               >
                 Close
@@ -296,8 +341,6 @@ function Modal() {
           </div>
         </div>
       )}
-
-
     </div>
   );
 }

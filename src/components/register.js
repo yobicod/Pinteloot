@@ -46,44 +46,54 @@ function Register() {
     }
   };
   return (
-    <div className="container">
-      <div className="register-container">
-        <form>
-          <div className="formControl">
-            <label>Name</label>
-            <input
-              className="input"
-              type="text"
-              placeholder="Full name"
-              onChange={inputName}
-              value={name}
-            ></input>
-          </div>
-          <div className="formControl">
-            <label>Email</label>
-            <input
-              className="input"
-              type="text  "
-              placeholder="Email"
-              onChange={inputEmail}
-              value={email}
-            ></input>
-          </div>
-          <div className="formControl">
-            <label>Password</label>
-            <input
-              className="input"
-              type="password"
-              placeholder="Password"
-              onChange={inputPassword}
-              value={password}
-            ></input>
-          </div>
-          <a href="#">Forgot your password?</a>
-          <button className="loginButton" onClick={handleOnRegister}>
-            Register
-          </button>
-        </form>
+    <div
+      style={{
+        width: "100%",
+        height: "700px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div className="container">
+        <div className="register-container">
+          <form>
+            <div className="formControl">
+              <label>Name</label>
+              <input
+                className="input"
+                type="text"
+                placeholder="Full name"
+                onChange={inputName}
+                value={name}
+              ></input>
+            </div>
+            <div className="formControl">
+              <label>Email</label>
+              <input
+                className="input"
+                type="text  "
+                placeholder="Email"
+                onChange={inputEmail}
+                value={email}
+              ></input>
+            </div>
+            <div className="formControl">
+              <label>Password</label>
+              <input
+                className="input"
+                type="password"
+                placeholder="Password"
+                onChange={inputPassword}
+                value={password}
+              ></input>
+            </div>
+            <a href="#">Forgot your password?</a>
+            <button className="loginButton" onClick={handleOnRegister}>
+              Register
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

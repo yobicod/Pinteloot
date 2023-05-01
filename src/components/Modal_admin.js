@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import "../components/Styles/Modal_style.css";
+// import "../components/Styles/Modal_style.css";
+import "./Styles/Modal_style.css";
 import { saveAs } from "file-saver";
 import Comments from "./Comments";
 import ReportPin from "./reportPin";
+import closeBtn from "../Images/close.png";
+import reportBtn from "../Images/warning.png";
+import dowloadBtn from "../Images/download.png";
+import editBtn from "../Images/pencil.png";
 import {
   BrowserRouter as Router,
   Routes,
@@ -41,6 +46,83 @@ function Modal() {
 
   const [allComment, setAllComment] = useState([]);
   const [comment, setComment] = useState("");
+
+  // modal edit
+  const [editPost, setEditPost] = useState(false);
+  const [dataEdit, setDataEdit] = useState({});
+
+  const toggleEdit = (value) => {
+    console.log("Yes");
+    setDataEdit(value);
+    setEditPost(!editPost);
+  };
+
+  const changeTitle = (event) => {
+    const newInputValues = dataEdit;
+    const newEditValues = {
+      Title: event.target.value,
+      Description: newInputValues.Description,
+      Link: newInputValues.Link,
+      img: newInputValues.img,
+      user_create: newInputValues.user_create,
+      user_create_name: newInputValues.user_create_name,
+      _id: newInputValues._id,
+    };
+    setDataEdit(newEditValues);
+  };
+
+  const changeDescription = (event) => {
+    const newInputValues = dataEdit;
+    const newEditValues = {
+      Title: newInputValues.Title,
+      Description: event.target.value,
+      Link: newInputValues.Link,
+      img: newInputValues.img,
+      user_create: newInputValues.user_create,
+      user_create_name: newInputValues.user_create_name,
+      _id: newInputValues._id,
+    };
+    setDataEdit(newEditValues);
+  };
+
+  const changeLink = (event) => {
+    const newInputValues = dataEdit;
+    const newEditValues = {
+      Title: newInputValues.Title,
+      Description: newInputValues.Description,
+      Link: event.target.value,
+      img: newInputValues.img,
+      user_create: newInputValues.user_create,
+      user_create_name: newInputValues.user_create_name,
+      _id: newInputValues._id,
+    };
+    setDataEdit(newEditValues);
+  };
+
+  const handleOnsummitEdit = async (e) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/editpost/${dataEdit._id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify(dataEdit),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const result = await response.json();
+      console.log(result);
+      setDataEdit({});
+      window.location.href = "/profile";
+      // handle success
+    } catch (error) {
+      console.error(error);
+      // handle error
+    }
+  };
+
+  // modal edit
 
   const inputComment = (event) => {
     setComment(event.target.value);
@@ -82,6 +164,7 @@ function Modal() {
       });
   }, [allComment]);
   // console.log(allComment);
+
   return (
     <div className="add_pin_modal">
       <div className="add_pin_container">
@@ -89,7 +172,11 @@ function Modal() {
           <div className="section1">
             <div className="select_size">
               <Link to="/" style={{ "text-decoration": "none" }}>
-                <div className="exit">x</div>
+                <img
+                  src={closeBtn}
+                  style={{ width: "16px" }}
+                  className="close-btn"
+                />
               </Link>
             </div>
           </div>
@@ -100,15 +187,40 @@ function Modal() {
 
         <div className="side" id="right_side">
           <div className="section1">
+            {data.data.user_create === user._id ? (
+              <div
+                className="edit-post"
+                style={{
+                  backgroundColor: "#fff",
+                  cursor: "context-menu",
+                }}
+              >
+                <div className="edit"></div>
+              </div>
+            ) : (
+              <div></div>
+            )}
+
             <div className="select_size">
               <div
-                className="save_image"
-                onClick={() => downloadImage(data.data.img)}
+                className="report"
+                onClick={() => {
+                  toggleEdit(data.data);
+                }}
               >
-                Save image
+                <img src={editBtn}></img>
               </div>
+              <div
+                className="report"
+                onClick={() => {
+                  downloadImage(data.data.img);
+                }}
+              >
+                <img src={dowloadBtn}></img>
+              </div>
+
               <div className="report" onClick={gotoReport}>
-                <div>📝</div>
+                <img src={reportBtn}></img>
               </div>
             </div>
           </div>
@@ -124,7 +236,9 @@ function Modal() {
                 height="30"
                 style={{ marginRight: "4%", borderRadius: "100%" }}
               />
-              <span style={{ "font-size": "1.5em" }}>{user.name}</span>
+              <span style={{ "font-size": "1em", opacity: 0.5 }}>
+                Create by {user.name}
+              </span>
             </div>
             <div className="pin-comment-container">
               {allComment.map((x) => {
@@ -148,6 +262,85 @@ function Modal() {
           </div>
         </div>
       </div>
+
+      {editPost && (
+        <div className="modal">
+          <div className="overlay">
+            <div
+              className="modal-content"
+              style={{
+                padding: "50px",
+                "border-radius": "20px",
+              }}
+            >
+              <div className="img-profile">
+                <img className="avatar-edit" src={dataEdit.img}></img>
+              </div>
+              <h2>Edit Post</h2>
+
+              <p>Title:</p>
+              <input
+                type="text"
+                value={dataEdit.Title}
+                onChange={changeTitle}
+                style={{
+                  height: "25px",
+                  padding: "5px",
+                  outline: "none",
+                  border: "none",
+                }}
+              ></input>
+
+              <p>Description:</p>
+              <input
+                type="text"
+                value={dataEdit.Description}
+                onChange={changeDescription}
+                style={{
+                  height: "25px",
+                  padding: "5px",
+                  outline: "none",
+                  border: "none",
+                }}
+              ></input>
+
+              <p>Link:</p>
+              <input
+                type="text"
+                value={dataEdit.Link}
+                onChange={changeLink}
+                style={{
+                  height: "25px",
+                  padding: "5px",
+                  outline: "none",
+                  border: "none",
+                }}
+              ></input>
+
+              <p></p>
+              <button
+                className="button-profilee"
+                onClick={() => handleOnsummitEdit()}
+              >
+                Submit change
+              </button>
+              {/* <img
+                className="close-modal button-close"
+                style={{
+                  width: "15px",
+                }}
+                onClick={() => toggleEdit()}
+              ></img> */}
+              <button
+                className="close-modal button-closee"
+                onClick={() => toggleEdit()}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -188,8 +188,9 @@
 #left_side .section1 .select_size {
   width: 236px;
   height: 40px;
-
   display: flex;
+  /* flex-direction: flex-end; */
+  /* background-color: red    ; */
 }
 
 #left_side .section1 .select_size .exit {
@@ -203,7 +204,6 @@
   font-weight: 700;
   cursor: pointer;
 }
-
 
 /* modal for edit profile */
 
@@ -243,7 +243,7 @@ body.active-modal {
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: #f1f1f1;
+  background: red;
   padding: 14px 28px;
   border-radius: 3px;
   max-width: 600px;
@@ -259,7 +259,7 @@ body.active-modal {
   z-index: 10;
 }
 
-.edit-post{
+.edit-post {
   width: 50%;
   height: 88%;
   background-color: #e60023;
@@ -272,12 +272,51 @@ body.active-modal {
   margin-right: 10px;
 }
 
-.edit{
+.edit {
   border-radius: 8px;
   font-size: 16px;
   font-weight: 700;
 
   color: white;
   cursor: pointer;
-  
+}
+
+#right_side .section1 .select_size .report {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.button-profilee {
+  width: 180px;
+  min-height: 35px;
+  border: none;
+  border-radius: 10px;
+  background-color: #2ee22e;
+  color: #fff;
+}
+.button-profilee:hover {
+  width: 180px;
+  min-height: 35px;
+  border: none;
+  border-radius: 10px;
+  /* background-color: #06ff00; */
+  color: #fff;
+}
+
+.button-closee {
+  background-color: #f1f1f1;
+  border: none;
+  outline: none;
+}
+
+.button-closee:hover {
+  background-color: #f1f1f1;
+  border: none;
+  outline: none;
+  transform: scale(1.1);
 }

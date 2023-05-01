@@ -49,7 +49,7 @@ function ReportPin() {
 
   return (
     <div className="box">
-      <div className="container">
+      <div className="containerr">
         <h1>Report Pin</h1>
         <div onChange={onChangeValue}>
           <div className="formControl">
@@ -91,7 +91,7 @@ function ReportPin() {
           <button className="button" onClick={cancelReport}>
             Cancel
           </button>
-          <button className="button" onClick={submitReport}>
+          <button className="button button-submit" onClick={submitReport}>
             Next
           </button>
         </div>

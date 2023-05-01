@@ -24,7 +24,7 @@ function Nav() {
           </Link>
         </div>
         <div className="navBtn createBtn nav">
-          <Link to="/create">
+          <Link to="/create" style={{ textDecoration: "none" }}>
             <p className="createTxt">Create</p>
           </Link>
         </div>
@@ -40,7 +40,7 @@ function Nav() {
           <img className="navChatIcon nav" src={profile} alt="Chat icon"></img>
         </Link>
         <div className="navBtn nav">
-          <Link to="/login">
+          <Link to="/login" style={{ textDecoration: "none", color: "#fff" }}>
             <p className="createTxt">Log In</p>
           </Link>
         </div>

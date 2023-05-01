@@ -8,6 +8,8 @@ import {
   BrowserRouter,
   useNavigate,
 } from "react-router-dom";
+import viewBtn from "../Images/analytics.png";
+import banBtn from "../Images/ban.png";
 function Admin() {
   const navigate = useNavigate();
   const [paneOption, setPaneOption] = useState("");
@@ -141,15 +143,23 @@ function Admin() {
                     onClick={() => {
                       handleViewClick(value.pinData);
                     }}
+                    style={{
+                      textAlign: "center",
+                      cursor: "pointer",
+                    }}
                   >
-                    view
+                    <img src={viewBtn}></img>
                   </td>
                   <td
                     onClick={() => {
                       handleBan(value);
                     }}
+                    style={{
+                      textAlign: "center",
+                      cursor: "pointer",
+                    }}
                   >
-                    Ban
+                    <img src={banBtn}></img>
                   </td>
                 </tr>
               );
