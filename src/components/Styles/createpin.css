@@ -9,6 +9,7 @@
   /* box-shadow: 15px 15px red; */
   background-color: #fff;
   margin-bottom: 10%;
+  transform: scale(0.85);
 }
 
 .title {

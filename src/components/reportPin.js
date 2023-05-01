@@ -68,19 +68,19 @@ function ReportPin() {
             </p>
           </div>
           <div className="formControl">
-            <input type="radio" value="Self-harm" name="Report Type" />
+            <input type="radio" value="Misinformation" name="Report Type" />
             Misinformation
             <p className="radio-description">
               Health, climate, voting misinformation{" "}
             </p>
           </div>
           <div className="formControl">
-            <input type="radio" value="Self-harm" name="Report Type" />
+            <input type="radio" value="Harrassment" name="Report Type" />
             Harassment on critism
             <p className="radio-description">Insults, threat</p>
           </div>
           <div className="formControl">
-            <input type="radio" value="Self-harm" name="Report Type" />
+            <input type="radio" value="Violence" name="Report Type" />
             Graphic violence
             <p className="radio-description">
               Violence images or promotion of violence

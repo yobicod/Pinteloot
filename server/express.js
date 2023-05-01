@@ -243,7 +243,7 @@ app.get("/getAllReport", async (req, res) => {
 });
 
 app.put("/editpost/:id", async (req, res) => {
-  console.log(req)
+  console.log(req);
   try {
     const id = req.params.id;
     const update = req.body;
@@ -258,6 +258,42 @@ app.put("/editpost/:id", async (req, res) => {
   } catch (e) {
     console.log(e);
     res.send("Something went wrong");
+  }
+});
+
+app.delete("/deletePost/:postId", async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    console.log(postId);
+    const deletedPost = await Post.findByIdAndDelete(postId);
+    res.send({
+      status: "ok",
+      message: `Post with ID ${postId} deleted successfully`,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      status: "error",
+      message: "An error occurred while deleting the post",
+    });
+  }
+});
+
+app.delete("/deleteReport/:postId", async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    console.log(postId);
+    const deletedReport = await Report.findByIdAndDelete(postId);
+    res.send({
+      status: "ok",
+      message: `Post with ID ${postId} deleted successfully`,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      status: "error",
+      message: "An error occurred while deleting the post",
+    });
   }
 });
 

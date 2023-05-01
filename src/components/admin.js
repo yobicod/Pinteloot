@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./Styles/admin.css";
-
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  BrowserRouter,
+  useNavigate,
+} from "react-router-dom";
 function Admin() {
+  const navigate = useNavigate();
   const [paneOption, setPaneOption] = useState("");
   const [allReport, setAllReport] = useState([]);
   const spamNo = allReport.filter((x) => x.type === "Spam").length;
@@ -26,6 +34,34 @@ function Admin() {
     setPaneOption("User");
   };
 
+  const handleViewClick = (value) => {
+    const data = {
+      data: value,
+    };
+    navigate("/Modal", { state: { data } });
+    console.log(value);
+  };
+
+  const handleBan = (value) => {
+    console.log(value);
+    fetch(`http://localhost:5000/deletePost/${value.pinData._id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "postdata");
+        // setCreatePost(data.data);
+      });
+
+    fetch(`http://localhost:5000/deleteReport/${value._id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "postdata");
+        // setCreatePost(data.data);
+      });
+  };
   useEffect(() => {
     fetch("http://localhost:5000/getAllReport", {
       method: "GET",
@@ -93,30 +129,31 @@ function Admin() {
               <th className="view-table-header">View</th>
               <th className="ban-table-header">Ban</th>
             </tr>
-            <tr className="row">
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-            </tr>
-            <tr className="row">
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-            </tr>
-            <tr className="row">
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-            </tr>
+            {allReport.map((value, index) => {
+              console.log(value);
+              return (
+                <tr className="row">
+                  <td>{value._id}</td>
+                  <td>{value.type}</td>
+                  <td>test</td>
+                  <td>test</td>
+                  <td
+                    onClick={() => {
+                      handleViewClick(value.pinData);
+                    }}
+                  >
+                    view
+                  </td>
+                  <td
+                    onClick={() => {
+                      handleBan(value);
+                    }}
+                  >
+                    Ban
+                  </td>
+                </tr>
+              );
+            })}
           </table>
         </div>
       </div>

@@ -5,27 +5,36 @@ import Avatar from "../Images/img_avatar.png";
 import { saveAs } from "file-saver";
 import { FiDownload } from "react-icons/fi";
 import { FiEdit3 } from "react-icons/fi";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  BrowserRouter,
+  useNavigate,
+} from "react-router-dom";
 //profile test
 function Profile() {
   console.log("Render Profile");
+  const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user"));
   const [modal, setModal] = useState(false);
   const [editPost, setEditPost] = useState(false);
-  const [dataEdit, setDataEdit] = useState({})
+  const [dataEdit, setDataEdit] = useState({});
   const [createPost, setCreatePost] = useState([]);
 
   const toggleModal = () => {
     setModal(!modal);
   };
 
-  const toggleEdit = (value) =>{
-    console.log(value)
-    setDataEdit(value)
+  const toggleEdit = (value) => {
+    console.log(value);
+    setDataEdit(value);
     setEditPost(!editPost);
-  }
+  };
 
-  const changeTitle = (event) =>{
+  const changeTitle = (event) => {
     const newInputValues = dataEdit;
     const newEditValues = {
       Title: event.target.value,
@@ -34,12 +43,12 @@ function Profile() {
       img: newInputValues.img,
       user_create: newInputValues.user_create,
       user_create_name: newInputValues.user_create_name,
-      _id:newInputValues._id
+      _id: newInputValues._id,
     };
     setDataEdit(newEditValues);
-  }
+  };
 
-  const changeDescription = (event) =>{
+  const changeDescription = (event) => {
     const newInputValues = dataEdit;
     const newEditValues = {
       Title: newInputValues.Title,
@@ -48,12 +57,12 @@ function Profile() {
       img: newInputValues.img,
       user_create: newInputValues.user_create,
       user_create_name: newInputValues.user_create_name,
-      _id:newInputValues._id
+      _id: newInputValues._id,
     };
     setDataEdit(newEditValues);
-  }
+  };
 
-  const changeLink = (event) =>{
+  const changeLink = (event) => {
     const newInputValues = dataEdit;
     const newEditValues = {
       Title: newInputValues.Title,
@@ -62,10 +71,10 @@ function Profile() {
       img: newInputValues.img,
       user_create: newInputValues.user_create,
       user_create_name: newInputValues.user_create_name,
-      _id:newInputValues._id
+      _id: newInputValues._id,
     };
     setDataEdit(newEditValues);
-  }
+  };
 
   useEffect(() => {
     fetch("http://localhost:5000/getAllPost", {
@@ -84,78 +93,97 @@ function Profile() {
 
   const handleOnsummitEdit = async (e) => {
     try {
-      const response = await fetch(`http://localhost:5000/editpost/${dataEdit._id}`, {
-        method: "PUT",
-        body: JSON.stringify(dataEdit),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `http://localhost:5000/editpost/${dataEdit._id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify(dataEdit),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const result = await response.json();
       console.log(result);
-      setDataEdit({})
+      setDataEdit({});
       window.location.href = "/profile";
       // handle success
-    } catch (error) { 
+    } catch (error) {
       console.error(error);
       // handle error
     }
-  }
+  };
 
+  const onHandleClick = (value) => {
+    const data = {
+      data: value,
+    };
+    console.log(data);
+    // const data = value;
+    navigate("/Modal", { state: { data } });
+  };
   const Imgcreate = () => {
-    return createPost.map((value, index) => {
-      if (value.user_create === user._id) {
-        if (value.img.slice(0, 10) === "data:image") {
-          return (
-            <div className="img_profile" key={index + 1}>
-              <img
-                className="imgpost"
-                src={value.img}
-                style={{ width: "250px", height: "380px", margin: "25px 15px" }}
-              ></img>
-              <button
-                className="btn_dowload"
-                onClick={() => downloadImage(value.img)}
-              >
-                <FiDownload style={{ width: "20px", height: "20px" }} />
-              </button>
+    return createPost
+      .slice(0)
+      .reverse()
+      .map((value, index) => {
+        const data = value;
+        console.log(data);
+        if (value.user_create === user._id) {
+          if (value.img.slice(0, 10) === "data:image") {
+            return (
+              <div className="img_profile" key={index + 1}>
+                <img
+                  className="imgpost"
+                  src={value.img}
+                  style={{
+                    width: "250px",
+                    height: "380px",
+                    margin: "25px 15px",
+                  }}
+                  onClick={() => {
+                    onHandleClick(data);
+                  }}
+                ></img>
+                <button
+                  className="btn_dowload"
+                  onClick={() => downloadImage(value.img)}
+                >
+                  <FiDownload style={{ width: "20px", height: "20px" }} />
+                </button>
 
-              <button
-                className="btn_edit"
-                onClick={() => toggleEdit(value)}  
-              >
-                <FiEdit3 style={{ width: "20px", height: "20px" }} />
-              </button>
-            </div>
+                <button className="btn_edit" onClick={() => toggleEdit(value)}>
+                  <FiEdit3 style={{ width: "20px", height: "20px" }} />
+                </button>
+              </div>
+            );
+          } else {
+            return (
+              <div className="img_profile" key={index + 1}>
+                <video
+                  className="imgpost"
+                  width="270px"
+                  height="390px"
+                  controls
+                >
+                  <source src={value.img} />
+                </video>
+                <button
+                  className="btn_dowload"
+                  onClick={() => downloadImage(value.img)}
+                >
+                  <FiDownload style={{ width: "20px", height: "20px" }} />
+                </button>
 
-            
-            
-          );
+                <button className="btn_edit" onClick={toggleEdit}>
+                  <FiEdit3 style={{ width: "20px", height: "20px" }} />
+                </button>
+              </div>
+            );
+          }
         } else {
-          return (
-            <div className="img_profile" key={index + 1}>
-              <video className="imgpost" width="270px" height="390px" controls>
-                <source src={value.img} />
-              </video>
-              <button
-                className="btn_dowload"
-                onClick={() => downloadImage(value.img)}
-              >
-                <FiDownload style={{ width: "20px", height: "20px" }} />
-              </button>
-
-              <button
-                className="btn_edit"
-                onClick={toggleEdit}  
-              >
-                <FiEdit3 style={{ width: "20px", height: "20px" }} />
-              </button>
-            </div>
-          );
         }
-      } else {
-      }
-    });
+      });
   };
 
   return (
@@ -169,8 +197,7 @@ function Profile() {
               </div>
               <h2>Hello Modal</h2>
               <p>Name:</p>
-             <input type="text"   
-              ></input>
+              <input type="text"></input>
 
               <p>Lastname:</p>
               <input type="text"></input>
@@ -192,41 +219,47 @@ function Profile() {
               <div className="img-profile">
                 <img className="avatar-edit" src={dataEdit.img}></img>
               </div>
-                    <h2>Edit Post</h2> 
+              <h2>Edit Post</h2>
 
-                    <p>Title:</p>
-                    <input type="text" 
-                      value={dataEdit.Title}
-                      onChange={changeTitle}
-                    ></input>
+              <p>Title:</p>
+              <input
+                type="text"
+                value={dataEdit.Title}
+                onChange={changeTitle}
+              ></input>
 
-                    <p>Description:</p>
-                    <input type="text" 
-                      value={dataEdit.Description}
-                      onChange={changeDescription}
-                    ></input>
+              <p>Description:</p>
+              <input
+                type="text"
+                value={dataEdit.Description}
+                onChange={changeDescription}
+              ></input>
 
-                    <p>Link:</p>
-                    <input type="text" 
-                      value={dataEdit.Link}
-                      onChange={changeLink}
-                    ></input>
+              <p>Link:</p>
+              <input
+                type="text"
+                value={dataEdit.Link}
+                onChange={changeLink}
+              ></input>
 
-                    <p></p>
-                      <button
-                        className="button-profile"
-                        onClick={() => handleOnsummitEdit()}
-                      >Summit change</button>
+              <p></p>
+              <button
+                className="button-profile"
+                onClick={() => handleOnsummitEdit()}
+              >
+                Summit change
+              </button>
 
-                      <button
-                        className="close-modal button-close"
-                        onClick={() => toggleEdit()}
-                      >Close</button>
-
-                    </div>
-                  </div>
-                </div>
-              )}
+              <button
+                className="close-modal button-close"
+                onClick={() => toggleEdit()}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="profile-div">
         <div className="img-profile">
