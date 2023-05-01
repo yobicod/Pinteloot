@@ -42,6 +42,83 @@ function Modal() {
   const [allComment, setAllComment] = useState([]);
   const [comment, setComment] = useState("");
 
+  // modal edit
+  const [editPost, setEditPost] = useState(false);
+  const [dataEdit, setDataEdit] = useState({});
+
+  const toggleEdit = (value) => {
+    console.log("Yes");
+    setDataEdit(value);
+    setEditPost(!editPost);
+  };
+
+  const changeTitle = (event) => {
+    const newInputValues = dataEdit;
+    const newEditValues = {
+      Title: event.target.value,
+      Description: newInputValues.Description,
+      Link: newInputValues.Link,
+      img: newInputValues.img,
+      user_create: newInputValues.user_create,
+      user_create_name: newInputValues.user_create_name,
+      _id: newInputValues._id,
+    };
+    setDataEdit(newEditValues);
+  };
+
+  const changeDescription = (event) => {
+    const newInputValues = dataEdit;
+    const newEditValues = {
+      Title: newInputValues.Title,
+      Description: event.target.value,
+      Link: newInputValues.Link,
+      img: newInputValues.img,
+      user_create: newInputValues.user_create,
+      user_create_name: newInputValues.user_create_name,
+      _id: newInputValues._id,
+    };
+    setDataEdit(newEditValues);
+  };
+
+  const changeLink = (event) => {
+    const newInputValues = dataEdit;
+    const newEditValues = {
+      Title: newInputValues.Title,
+      Description: newInputValues.Description,
+      Link: event.target.value,
+      img: newInputValues.img,
+      user_create: newInputValues.user_create,
+      user_create_name: newInputValues.user_create_name,
+      _id: newInputValues._id,
+    };
+    setDataEdit(newEditValues);
+  };
+
+  const handleOnsummitEdit = async (e) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/editpost/${dataEdit._id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify(dataEdit),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const result = await response.json();
+      console.log(result);
+      setDataEdit({});
+      window.location.href = "/profile";
+      // handle success
+    } catch (error) {
+      console.error(error);
+      // handle error
+    }
+  };
+  
+  // modal edit
+
   const inputComment = (event) => {
     setComment(event.target.value);
   };
@@ -82,6 +159,9 @@ function Modal() {
       });
   }, [allComment]);
   // console.log(allComment);
+  
+
+
   return (
     <div className="add_pin_modal">
       <div className="add_pin_container">
@@ -91,8 +171,9 @@ function Modal() {
               <Link to="/" style={{ "text-decoration": "none" }}>
                 <div className="exit">x</div>
               </Link>
+              
             </div>
-          </div>
+          </div> 
           <div className="section2">
             <img src={data.data.img} className="modals_pin" />
           </div>
@@ -100,6 +181,13 @@ function Modal() {
 
         <div className="side" id="right_side">
           <div className="section1">
+
+            {data.data.user_create === user._id ?
+            <div className="edit-post">
+              <div className="edit" onClick={() => toggleEdit(data.data)}>Edit Post</div>
+            </div>:<div></div>
+          }
+
             <div className="select_size">
               <div
                 className="save_image"
@@ -124,7 +212,7 @@ function Modal() {
                 height="30"
                 style={{ marginRight: "4%", borderRadius: "100%" }}
               />
-              <span style={{ "font-size": "1.5em" }}>{user.name}</span>
+              <span style={{ "font-size": "1.5em" }}>{data.data.user_create_name}</span>
             </div>
             <div className="pin-comment-container">
               {allComment.map((x) => {
@@ -148,6 +236,57 @@ function Modal() {
           </div>
         </div>
       </div>
+      
+      {editPost && (
+        <div className="modal">
+          <div className="overlay">
+            <div className="modal-content">
+              <div className="img-profile">
+                <img className="avatar-edit" src={dataEdit.img}></img>
+              </div>
+              <h2>Edit Post</h2>
+
+              <p>Title:</p>
+              <input
+                type="text"
+                value={dataEdit.Title}
+                onChange={changeTitle}
+              ></input>
+
+              <p>Description:</p>
+              <input
+                type="text"
+                value={dataEdit.Description}
+                onChange={changeDescription}
+              ></input>
+
+              <p>Link:</p>
+              <input
+                type="text"
+                value={dataEdit.Link}
+                onChange={changeLink}
+              ></input>
+
+              <p></p>
+              <button
+                className="button-profile"
+                onClick={() => handleOnsummitEdit()}
+              >
+                Summit change
+              </button>
+
+              <button
+                className="close-modal button-close"
+                onClick={() => toggleEdit()}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+
     </div>
   );
 }
