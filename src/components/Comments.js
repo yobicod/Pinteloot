@@ -20,7 +20,7 @@ function Comments(props) {
         </span>
       </div>
       <div class="comment-details">
-        <p class="comment-text" style={{ "font-size": "12px" }}>
+        <p class="comment-text" style={{ "font-size": "16px", opacity: 0.7 }}>
           {comment.text}
         </p>
         <div class="comment-actions"></div>

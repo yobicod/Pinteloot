@@ -4,6 +4,7 @@ import "../components/Styles/Modal_style.css";
 import { saveAs } from "file-saver";
 import Comments from "./Comments";
 import ReportPin from "./reportPin";
+import closeBtn from "../Images/close.png";
 import {
   BrowserRouter as Router,
   Routes,
@@ -169,7 +170,11 @@ function Modal() {
           <div className="section1">
             <div className="select_size">
               <Link to="/" style={{ "text-decoration": "none" }}>
-                <div className="exit">x</div>
+                <img
+                  src={closeBtn}
+                  style={{ width: "16px" }}
+                  className="close-btn"
+                />
               </Link>
               
             </div>
@@ -212,7 +217,13 @@ function Modal() {
                 height="30"
                 style={{ marginRight: "4%", borderRadius: "100%" }}
               />
+<<<<<<< HEAD
               <span style={{ "font-size": "1.5em" }}>{data.data.user_create_name}</span>
+=======
+              <span style={{ "font-size": "1em", opacity: 0.5 }}>
+                Create by {user.name}
+              </span>
+>>>>>>> 815eeab9e1815d726605c7ce9d6ccf8565379ce4
             </div>
             <div className="pin-comment-container">
               {allComment.map((x) => {
