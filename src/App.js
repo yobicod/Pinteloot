@@ -8,6 +8,7 @@ import Mainboard from "./components/mainboard";
 import Profile from "./components/profile";
 import Pin from "./components/Pin";
 import Modal from "./components/Modal";
+import ModalAdmin from "./components/Modal_admin";
 import ReportPin from "./components/reportPin";
 import {
   BrowserRouter as Router,
@@ -54,6 +55,9 @@ function App() {
           </Route>
           <Route>
             <Route path="/report" element={<ReportPin />} exact></Route>
+          </Route>
+          <Route>
+            <Route path="/ModalAdmin" element={<ModalAdmin />} exact></Route>
           </Route>
         </Routes>
       </BrowserRouter>

@@ -38,7 +38,7 @@ function Admin() {
     const data = {
       data: value,
     };
-    navigate("/Modal", { state: { data } });
+    navigate("/ModalAdmin", { state: { data } });
     console.log(value);
   };
 
