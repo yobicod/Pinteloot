@@ -42,7 +42,7 @@ function Admin() {
 
   const handleBan = (value) => {
     console.log(value);
-    fetch(`http://localhost:5000/deletePost/${value.pinData._id}`, {
+    fetch(`http://52.201.209.138:5000/deletePost/${value.pinData._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -50,7 +50,7 @@ function Admin() {
         console.log(data, "postdata");
       });
 
-    fetch(`http://localhost:5000/deleteReport/${value._id}`, {
+    fetch(`http://52.201.209.138:5000/deleteReport/${value._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -62,7 +62,7 @@ function Admin() {
 
   const handleBanComment = (value) => {
     console.log(value._id);
-    fetch(`http://localhost:5000/deleteComment/${value._id}`, {
+    fetch(`http://52.201.209.138:5000/deleteComment/${value._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -75,7 +75,7 @@ function Admin() {
 
   const handleBanUser = (value) => {
     console.log(value._id);
-    fetch(`http://localhost:5000/deleteUser/${value._id}`, {
+    fetch(`http://52.201.209.138:5000/deleteUser/${value._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -85,7 +85,7 @@ function Admin() {
     window.location.href = "/admin";
   };
   useEffect(() => {
-    fetch("http://localhost:5000/getAllReport", {
+    fetch("http://52.201.209.138:5000/getAllReport", {
       method: "GET",
     })
       .then((res) => res.json())
@@ -95,7 +95,7 @@ function Admin() {
         console.log(allReport);
       });
 
-    fetch("http://localhost:5000/getAllComment", {
+    fetch("http://52.201.209.138:5000/getAllComment", {
       method: "GET",
     })
       .then((res) => res.json())
@@ -105,7 +105,7 @@ function Admin() {
         console.log(allReport);
       });
 
-    fetch("http://localhost:5000/getAllUser", {
+    fetch("http://52.201.209.138:5000/getAllUser", {
       method: "GET",
     })
       .then((res) => res.json())

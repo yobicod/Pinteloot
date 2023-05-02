@@ -25,7 +25,7 @@ function ReportPin() {
     };
     if (reportType.length > 0) {
       e.preventDefault();
-      let result = await fetch("http://localhost:5000/report", {
+      let result = await fetch("http://52.201.209.138:5000/report", {
         method: "post",
         body: JSON.stringify(dataObj),
         headers: {

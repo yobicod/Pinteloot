@@ -42,7 +42,7 @@ function Mainboard() {
   const [searchTxt, setSearchTxt] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/getAllPost", {
+    fetch("http://52.201.209.138:5000/getAllPost", {
       method: "GET",
     })
       .then((res) => res.json())
@@ -84,7 +84,7 @@ function Mainboard() {
               padding: "0 20px",
             }}
           />
-          <img className="navBellIcon nav" src={navBell} alt="Bell icon" />
+          {/* <img className="navBellIcon nav" src={navBell} alt="Bell icon" /> */}
 
           <Link to="/profile">
             <img className="navChatIcon nav" src={profile} alt="Chat icon" />

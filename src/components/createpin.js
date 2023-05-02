@@ -76,7 +76,7 @@ function Createpin() {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     inputValues.map(async (value, index) => {
-      let result = await fetch("http://localhost:5000/post", {
+      let result = await fetch("http://52.201.209.138:5000/post", {
         method: "post",
         body: JSON.stringify(inputValues[index]),
         headers: {

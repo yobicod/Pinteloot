@@ -30,7 +30,7 @@ function Register() {
       alert("Please fill all input");
     } else {
       e.preventDefault();
-      let result = await fetch("http://localhost:5000/register", {
+      let result = await fetch("http://52.201.209.138:5000/register", {
         method: "post",
         body: JSON.stringify(user),
         headers: {

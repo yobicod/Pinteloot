@@ -25,7 +25,7 @@ function Login() {
       alert("Please fill all input");
     } else {
       e.preventDefault();
-      let result = await fetch("http://localhost:5000/login", {
+      let result = await fetch("http://52.201.209.138:5000/login", {
         method: "post",
         body: JSON.stringify(user),
         headers: {
@@ -92,7 +92,11 @@ function Login() {
               ></input>
             </div>
             <a href="/register">Create account</a>
-            <button className="loginButton" onClick={handleOnLogin}>
+            <button
+              className="loginButton"
+              onClick={handleOnLogin}
+              type="button"
+            >
               Login
             </button>
           </form>

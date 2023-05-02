@@ -37,7 +37,7 @@ function Nav() {
             padding: "0 20px",
           }}
         ></input>
-        <img className="navBellIcon nav" src={navBell} alt="Bell icon"></img>
+        {/* <img className="navBellIcon nav" src={navBell} alt="Bell icon"></img> */}
 
         <Link to="/profile">
           <img className="navChatIcon nav" src={profile} alt="Chat icon"></img>

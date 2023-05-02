@@ -84,19 +84,19 @@ function Profile() {
   };
 
   const changeName = (event) => {
-    setNameuser(event.target.value)
+    setNameuser(event.target.value);
   };
 
   const changeEmail = (event) => {
-    setEmailuser(event.target.value)
+    setEmailuser(event.target.value);
   };
 
   const changePassword = (event) => {
-    setPassword(event.target.value)
+    setPassword(event.target.value);
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/getAllPost", {
+    fetch("http://52.201.209.138:5000/getAllPost", {
       method: "GET",
     })
       .then((res) => res.json())
@@ -113,7 +113,7 @@ function Profile() {
   const handleOnsummitEdit = async (e) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/editpost/${dataEdit._id}`,
+        `http://52.201.209.138:5000/editpost/${dataEdit._id}`,
         {
           method: "PUT",
           body: JSON.stringify(dataEdit),
@@ -134,17 +134,17 @@ function Profile() {
   };
 
   const handleOnEditProfile = async (e) => {
-    const edituser ={
-      Role:user.Role,
-      date:user.date,
-      email:emailuser,
-      name:nameuser,
-      password:password,
-      _id:user._id
-    }
+    const edituser = {
+      Role: user.Role,
+      date: user.date,
+      email: emailuser,
+      name: nameuser,
+      password: password,
+      _id: user._id,
+    };
     try {
       const response = await fetch(
-        `http://localhost:5000/editProfile/${user._id}`,
+        `http://52.201.209.138:5000/editProfile/${user._id}`,
         {
           method: "PUT",
           body: JSON.stringify(edituser),
@@ -249,30 +249,26 @@ function Profile() {
               </div>
               <h2>Edit Profile</h2>
               <p>Email:</p>
-              <input 
-              type="text"
-              value={emailuser}
-              onChange={changeEmail}
+              <input
+                type="text"
+                value={emailuser}
+                onChange={changeEmail}
               ></input>
 
               <p>Name:</p>
-              <input 
-              type="text"
-              value={nameuser}
-              onChange={changeName}
-              ></input>
+              <input type="text" value={nameuser} onChange={changeName}></input>
 
               <p>Password:</p>
-              <input 
-              type="text"
-              value={password}
-              onChange={changePassword}
+              <input
+                type="text"
+                value={password}
+                onChange={changePassword}
               ></input>
 
               <p></p>
               <button
                 className="button-profilee"
-                onClick={() =>handleOnEditProfile()}
+                onClick={() => handleOnEditProfile()}
               >
                 Submit change
               </button>
@@ -353,15 +349,14 @@ function Profile() {
             style={{ cursor: "pointer" }}
           ></img>
 
-        {user.Role === 'role' ?
-        (
-          <Link to="/admin" style={{ textDecoration: "none", color: "#fff" }}>
-          <button className="admin_btn">Admin page</button>
-         </Link>
-        ):
-        (<div></div>)
-        }
-         
+          {user.Role === "role" ? (
+            <Link to="/admin" style={{ textDecoration: "none", color: "#fff" }}>
+              <button className="admin_btn">Admin page</button>
+            </Link>
+          ) : (
+            <div></div>
+          )}
+
           {/* <button className="button-profile">Edit profile</button> */}
         </div>
         <h2 style={{ marginTop: "3%" }}>My post</h2>

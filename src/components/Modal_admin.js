@@ -104,7 +104,7 @@ function Modal() {
   const handleOnsummitEdit = async (e) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/editpost/${dataEdit._id}`,
+        `http://52.201.209.138:5000/editpost/${dataEdit._id}`,
         {
           method: "PUT",
           body: JSON.stringify(dataEdit),
@@ -143,7 +143,7 @@ function Modal() {
         alert("Please fill comment");
       } else {
         event.preventDefault();
-        let result = await fetch("http://localhost:5000/comment", {
+        let result = await fetch("http://52.201.209.138:5000/comment", {
           method: "post",
           body: JSON.stringify(commentObj),
           headers: {
@@ -156,7 +156,7 @@ function Modal() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/getAllComment", {
+    fetch("http://52.201.209.138:5000/getAllComment", {
       method: "GET",
     })
       .then((res) => res.json())
