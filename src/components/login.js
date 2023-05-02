@@ -39,16 +39,14 @@ function Login() {
         setId("");
         setPassword("");
         localStorage.setItem("user", JSON.stringify(result));
-        console.log(result.Role)
-        if (result.Role === 'role') {
+        console.log(result.Role);
+        if (result.Role === "role") {
           window.location.href = "/admin";
         } else {
           window.location.href = "/mainpage";
         }
-        
       } else {
         console.log("Login unsuccessfull");
-        
       }
     }
   };
@@ -70,7 +68,7 @@ function Login() {
       }}
     >
       {/* <Nav /> */}
-      <div className="containerr">
+      <div className="container">
         <div className="loginContainer">
           <form>
             <div className="formControl">
@@ -93,12 +91,9 @@ function Login() {
                 value={password}
               ></input>
             </div>
-            <a href="#">Forgot your password?</a>
+            <a href="/register">Create account</a>
             <button className="loginButton" onClick={handleOnLogin}>
               Login
-            </button>
-            <button className="loginButton" onClick={handleOnLogout}>
-              Logout
             </button>
           </form>
         </div>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Styles/profile.css";
-import { v4 as uuidv4 } from "uuid";
 import Avatar from "../Images/img_avatar.png";
 import { saveAs } from "file-saver";
 import { FiDownload } from "react-icons/fi";
@@ -14,9 +13,9 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Nav from "./nav";
-
 import editBtn from "../Images/pencil.png";
-//profile test
+import adminBtn from "../Images/admin.png";
+
 function Profile() {
   console.log("Render Profile");
   const navigate = useNavigate();
@@ -281,15 +280,15 @@ function Profile() {
             style={{ cursor: "pointer" }}
           ></img>
 
-        {user.Role === 'role' ?
-        (
-          <Link to="/admin" style={{ textDecoration: "none", color: "#fff" }}>
-          <button className="admin_btn">Admin page</button>
-         </Link>
-        ):
-        (<div></div>)
-        }
-         
+          {user.Role === "role" ? (
+            <Link to="/admin" style={{ textDecoration: "none", color: "#fff" }}>
+              {/* <button className="admin_btn">Admin page</button> */}
+              <img src={adminBtn}></img>
+            </Link>
+          ) : (
+            <div></div>
+          )}
+
           {/* <button className="button-profile">Edit profile</button> */}
         </div>
         <h2 style={{ marginTop: "3%" }}>My post</h2>

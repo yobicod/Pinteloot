@@ -242,6 +242,15 @@ app.get("/getAllReport", async (req, res) => {
   }
 });
 
+app.get("/getAllUser", async (req, res) => {
+  try {
+    const allUser = await User.find({});
+    res.send({ status: "ok", data: allUser });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 app.put("/editpost/:id", async (req, res) => {
   console.log(req);
   try {
@@ -287,6 +296,41 @@ app.delete("/deleteReport/:postId", async (req, res) => {
     res.send({
       status: "ok",
       message: `Post with ID ${postId} deleted successfully`,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      status: "error",
+      message: "An error occurred while deleting the post",
+    });
+  }
+});
+
+app.delete("/deleteComment/:commentId", async (req, res) => {
+  try {
+    const commentId = req.params.commentId;
+    console.log(commentId);
+    const deletedComment = await Comment.findByIdAndDelete(commentId);
+    res.send({
+      status: "ok",
+      message: `Post with ID ${commentId} deleted successfully`,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      status: "error",
+      message: "An error occurred while deleting the post",
+    });
+  }
+});
+
+app.delete("/deleteUser/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const deletedUser = await User.findByIdAndDelete(userId);
+    res.send({
+      status: "ok",
+      message: `User with ID ${userId} deleted successfully`,
     });
   } catch (error) {
     console.log(error);

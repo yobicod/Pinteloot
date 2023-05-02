@@ -171,13 +171,15 @@ function Mainboard() {
             value={searchTxt}
           />
           <img className="navBellIcon nav" src={navBell} alt="Bell icon" />
-          <img className="navChatIcon nav" src={admin} alt="Chat icon" />
+
           <Link to="/profile">
             <img className="navChatIcon nav" src={profile} alt="Chat icon" />
           </Link>
           <div className="navBtn nav">
-            <Link to="/login" style={{ textDecoration: "none", color: "#fff" }}
-            onClick={handleOnLogout}
+            <Link
+              to="/login"
+              style={{ textDecoration: "none", color: "#fff" }}
+              onClick={handleOnLogout}
             >
               <p className="createTxt">Log Out</p>
             </Link>

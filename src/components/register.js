@@ -46,6 +46,7 @@ function Register() {
         setPassword("");
       }
     }
+    window.location.href = "/login";
   };
   return (
     <div
