@@ -207,3 +207,12 @@ body.active-modal {
     transform: scale(1);
   }
 }
+
+.admin_btn{
+  width: 97px;
+  height: 35px;
+  background-color: #fc7300;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+}

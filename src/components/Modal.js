@@ -171,7 +171,7 @@ function Modal() {
         <div className="side" id="left_side">
           <div className="section1">
             <div className="select_size">
-              <Link to="/" style={{ "text-decoration": "none" }}>
+              <Link to="/mainpage" style={{ "text-decoration": "none" }}>
                 <img
                   src={closeBtn}
                   style={{ width: "16px" }}
@@ -187,22 +187,9 @@ function Modal() {
 
         <div className="side" id="right_side">
           <div className="section1">
-            {data.data.user_create === user._id ? (
-              <div
-                className="edit-post"
-                style={{
-                  backgroundColor: "#fff",
-                  cursor: "context-menu",
-                }}
-              >
-                <div className="edit"></div>
-              </div>
-            ) : (
-              <div></div>
-            )}
-
             <div className="select_size">
-              <div
+              {data.data.user_create === user._id ? (
+                <div
                 className="report"
                 onClick={() => {
                   toggleEdit(data.data);
@@ -210,6 +197,9 @@ function Modal() {
               >
                 <img src={editBtn}></img>
               </div>
+              ) : (
+                <div></div>
+              )}
               <div
                 className="report"
                 onClick={() => {

@@ -30,7 +30,7 @@ function App() {
         {/* <Profile/> */}
         <Routes>
           <Route>
-            <Route path="/" element={<Mainboard />} exact></Route>
+            <Route path="/" element={<Login />} exact></Route>
           </Route>
           <Route>
             <Route path="/create" element={<Createpin />} exact></Route>
@@ -58,6 +58,9 @@ function App() {
           </Route>
           <Route>
             <Route path="/ModalAdmin" element={<ModalAdmin />} exact></Route>
+          </Route>
+          <Route>
+            <Route path="/mainpage" element={<Mainboard />} exact></Route>
           </Route>
         </Routes>
       </BrowserRouter>

@@ -39,8 +39,16 @@ function Login() {
         setId("");
         setPassword("");
         localStorage.setItem("user", JSON.stringify(result));
+        console.log(result.Role)
+        if (result.Role === 'role') {
+          window.location.href = "/admin";
+        } else {
+          window.location.href = "/mainpage";
+        }
+        
       } else {
         console.log("Login unsuccessfull");
+        
       }
     }
   };

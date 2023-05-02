@@ -15,12 +15,17 @@ function Nav() {
   const inputTxt = (event) => {
     setSearchTxt(event.target.value);
   };
+  const handleOnLogout = async (e) => {
+    localStorage.clear();
+  };
+
+
 
   return (
     <div className="nav-out-container">
       <div className="navContainer">
         <div className="navBtn nav">
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/mainpage" style={{ textDecoration: "none" }}>
             <p className="homeTxt">Home</p>
           </Link>
         </div>
@@ -41,8 +46,10 @@ function Nav() {
           <img className="navChatIcon nav" src={profile} alt="Chat icon"></img>
         </Link>
         <div className="navBtn nav">
-          <Link to="/login" style={{ textDecoration: "none", color: "#fff" }}>
-            <p className="createTxt">Log In</p>
+          <Link to="/login" style={{ textDecoration: "none", color: "#fff" }}
+          onClick={handleOnLogout}
+          >
+            <p className="createTxt">Log Out</p>
           </Link>
         </div>
       </div>
