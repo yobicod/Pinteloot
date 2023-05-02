@@ -9,6 +9,7 @@ import closeBtn from "../Images/close.png";
 import reportBtn from "../Images/warning.png";
 import dowloadBtn from "../Images/download.png";
 import editBtn from "../Images/pencil.png";
+import likeBtn from "../Images/heart.png";
 import {
   BrowserRouter as Router,
   Routes,
@@ -27,6 +28,9 @@ function Modal() {
   //รับค่าจาก pin
   const location = useLocation();
   const data = location.state?.data;
+
+  const [detail, setDetail] = useState(data.data.like);
+  console.log(detail);
   console.log(data);
   const dataToReport = data.data;
   console.log(dataToReport);
@@ -153,6 +157,42 @@ function Modal() {
     }
   };
 
+  const handleLikeClick = async (value) => {
+    console.log(value);
+    let like = value.like;
+    const dataEdit = {
+      _id: value._id,
+      Title: value.Title,
+      Description: value.Description,
+      Link: value.Link,
+      img: value.img,
+      user_create: value.user_create,
+      user_create_name: value.user_create_name,
+      like: like + 1,
+      date: value.date,
+    };
+    try {
+      const response = await fetch(
+        `http://localhost:5000/addlike/${value._id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify(dataEdit),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const result = await response.json();
+      console.log(result);
+      setDataEdit({});
+      setDetail(data.data.like + 1);
+      // window.location.href = "/Modal";
+      // handle success
+    } catch (error) {
+      console.error(error);
+      // handle error
+    }
+  };
   useEffect(() => {
     fetch("http://localhost:5000/getAllComment", {
       method: "GET",
@@ -190,13 +230,13 @@ function Modal() {
             <div className="select_size">
               {data.data.user_create === user._id ? (
                 <div
-                className="report"
-                onClick={() => {
-                  toggleEdit(data.data);
-                }}
-              >
-                <img src={editBtn}></img>
-              </div>
+                  className="report"
+                  onClick={() => {
+                    toggleEdit(data.data);
+                  }}
+                >
+                  <img src={editBtn}></img>
+                </div>
               ) : (
                 <div></div>
               )}
@@ -215,8 +255,26 @@ function Modal() {
             </div>
           </div>
           <div className="section2">
-            <div className="title_image">
+            <div className="title_image" style={{ marginBottom: "15px" }}>
               <h1>{data.data.Title}</h1>
+              <div
+                style={{
+                  width: "15%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <img
+                  src={likeBtn}
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    handleLikeClick(data.data);
+                  }}
+                ></img>
+                {detail}
+              </div>
             </div>
             <div className="account">
               <img
