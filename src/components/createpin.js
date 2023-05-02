@@ -97,7 +97,7 @@ function Createpin() {
             user_create_name: "",
           },
         ]);
-        window.location.href = "/";
+        window.location.href = "/mainpage";
       }
     });
   };
@@ -178,46 +178,53 @@ function Createpin() {
     );
   };
 
-  return inputValues.map((value, index) => {
-    return (
-      <div className="div-first">
-        <Nav />
-        <div className="container-post">
-          <MyDropzone pictures={value.img} index={index} />
 
-          <form className="form">
-            <div className="formcontroll">
-              <input
-                className="title"
-                type="text"
-                placeholder="Add your title"
-                onChange={(title) => inputTitle(title, index)}
-                value={value.Title}
-              ></input>
+  return (
+    <div>
+      <Nav />
+      {inputValues.map((value, index) => {
+        return (
+          <div className="div-first">
+            <div className="container-post">
+              <MyDropzone pictures={value.img} index={index} />
+    
+              <form className="form">
+                <div className="formcontroll">
+                  <input
+                    className="title"
+                    type="text"
+                    placeholder="Add your title"
+                    onChange={(title) => inputTitle(title, index)}
+                    value={value.Title}
+                  ></input>
+                </div>
+                <div className="formcontroll">
+                  <input
+                    className="descrip"
+                    type="text"
+                    placeholder="Tell every one your pin is about 😊"
+                    onChange={(description) => inputDescription(description, index)}
+                    value={value.Description}
+                  ></input>
+                </div>
+                <div className="formcontrollLink">
+                  <input
+                    className="link"
+                    type="text"
+                    placeholder="Link"
+                    onChange={(link) => inputLink(link, index)}
+                    value={value.Link}
+                  ></input>
+                </div>
+              </form>
             </div>
-            <div className="formcontroll">
-              <input
-                className="descrip"
-                type="text"
-                placeholder="Tell every one your pin is about 😊"
-                onChange={(description) => inputDescription(description, index)}
-                value={value.Description}
-              ></input>
-            </div>
-            <div className="formcontrollLink">
-              <input
-                className="link"
-                type="text"
-                placeholder="Link"
-                onChange={(link) => inputLink(link, index)}
-                value={value.Link}
-              ></input>
-            </div>
-          </form>
-        </div>
-      </div>
-    );
-  });
+          </div>
+        );
+      })}
+    </div>
+  )
+    
+    
 }
 
 export default Createpin;

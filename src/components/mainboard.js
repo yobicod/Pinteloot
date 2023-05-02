@@ -145,6 +145,10 @@ function Mainboard() {
     post.Title.toLowerCase().includes(searchTxt.toLowerCase())
   );
 
+  const handleOnLogout = async (e) => {
+    localStorage.clear();
+  };
+
   return (
     <Wrapper>
       {/* <Nav /> */}
@@ -172,8 +176,10 @@ function Mainboard() {
             <img className="navChatIcon nav" src={profile} alt="Chat icon" />
           </Link>
           <div className="navBtn nav">
-            <Link to="/login" style={{ textDecoration: "none", color: "#fff" }}>
-              <p className="createTxt">Log In</p>
+            <Link to="/login" style={{ textDecoration: "none", color: "#fff" }}
+            onClick={handleOnLogout}
+            >
+              <p className="createTxt">Log Out</p>
             </Link>
           </div>
         </div>

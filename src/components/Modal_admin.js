@@ -174,7 +174,7 @@ function Modal() {
         <div className="side" id="left_side">
           <div className="section1">
             <div className="select_size">
-              <Link to="/" style={{ "text-decoration": "none" }}>
+              <Link to="/admin" style={{ "text-decoration": "none" }}>
                 <img
                   src={closeBtn}
                   style={{ width: "16px" }}

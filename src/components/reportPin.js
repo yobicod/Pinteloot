@@ -38,13 +38,13 @@ function ReportPin() {
       if (result) {
         alert("Data saved succesfully");
       }
-      window.location.href = "/";
+      window.location.href = "/mainpage";
     } else {
       alert("Please select report type");
     }
   };
   const cancelReport = () => {
-    window.location.href = "/";
+    window.location.href = "/mainpage";
   };
 
   return (

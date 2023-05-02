@@ -280,6 +280,16 @@ function Profile() {
             onClick={toggleModal}
             style={{ cursor: "pointer" }}
           ></img>
+
+        {user.Role === 'role' ?
+        (
+          <Link to="/admin" style={{ textDecoration: "none", color: "#fff" }}>
+          <button className="admin_btn">Admin page</button>
+         </Link>
+        ):
+        (<div></div>)
+        }
+         
           {/* <button className="button-profile">Edit profile</button> */}
         </div>
         <h2 style={{ marginTop: "3%" }}>My post</h2>
