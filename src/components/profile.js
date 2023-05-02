@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Styles/profile.css";
+import { v4 as uuidv4, validate } from "uuid";
 import Avatar from "../Images/img_avatar.png";
 import { saveAs } from "file-saver";
 import { FiDownload } from "react-icons/fi";
@@ -13,9 +14,9 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Nav from "./nav";
-import editBtn from "../Images/pencil.png";
-import adminBtn from "../Images/admin.png";
 
+import editBtn from "../Images/pencil.png";
+//profile test
 function Profile() {
   console.log("Render Profile");
   const navigate = useNavigate();
@@ -25,6 +26,10 @@ function Profile() {
   const [editPost, setEditPost] = useState(false);
   const [dataEdit, setDataEdit] = useState({});
   const [createPost, setCreatePost] = useState([]);
+
+  const [nameuser, setNameuser] = useState(user.name);
+  const [emailuser, setEmailuser] = useState(user.email);
+  const [password, setPassword] = useState(user.password);
 
   const toggleModal = () => {
     setModal(!modal);
@@ -78,6 +83,18 @@ function Profile() {
     setDataEdit(newEditValues);
   };
 
+  const changeName = (event) => {
+    setNameuser(event.target.value)
+  };
+
+  const changeEmail = (event) => {
+    setEmailuser(event.target.value)
+  };
+
+  const changePassword = (event) => {
+    setPassword(event.target.value)
+  };
+
   useEffect(() => {
     fetch("http://localhost:5000/getAllPost", {
       method: "GET",
@@ -108,6 +125,38 @@ function Profile() {
       const result = await response.json();
       console.log(result);
       setDataEdit({});
+      window.location.href = "/profile";
+      // handle success
+    } catch (error) {
+      console.error(error);
+      // handle error
+    }
+  };
+
+  const handleOnEditProfile = async (e) => {
+    const edituser ={
+      Role:user.Role,
+      date:user.date,
+      email:emailuser,
+      name:nameuser,
+      password:password,
+      _id:user._id
+    }
+    try {
+      const response = await fetch(
+        `http://localhost:5000/editProfile/${user._id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify(edituser),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const result = await response.json();
+      console.log(result);
+      setDataEdit({});
+      localStorage.setItem("user", JSON.stringify(result));
       window.location.href = "/profile";
       // handle success
     } catch (error) {
@@ -198,12 +247,36 @@ function Profile() {
               <div className="img-profile">
                 <img className="avatar-edit" src={Avatar}></img>
               </div>
-              <h2>Hello Modal</h2>
-              <p>Name:</p>
-              <input type="text"></input>
+              <h2>Edit Profile</h2>
+              <p>Email:</p>
+              <input 
+              type="text"
+              value={emailuser}
+              onChange={changeEmail}
+              ></input>
 
-              <p>Lastname:</p>
-              <input type="text"></input>
+              <p>Name:</p>
+              <input 
+              type="text"
+              value={nameuser}
+              onChange={changeName}
+              ></input>
+
+              <p>Password:</p>
+              <input 
+              type="text"
+              value={password}
+              onChange={changePassword}
+              ></input>
+
+              <p></p>
+              <button
+                className="button-profilee"
+                onClick={() =>handleOnEditProfile()}
+              >
+                Submit change
+              </button>
+
               <button
                 className="close-modal button-profile"
                 onClick={toggleModal}
@@ -280,13 +353,16 @@ function Profile() {
             style={{ cursor: "pointer" }}
           ></img>
 
-          {user.Role === "role" ? (
-            <Link to="/admin" style={{ textDecoration: "none", color: "#fff" }}>
-              <img src={adminBtn}></img>
-            </Link>
-          ) : (
-            <div></div>
-          )}
+        {user.Role === 'role' ?
+        (
+          <Link to="/admin" style={{ textDecoration: "none", color: "#fff" }}>
+          <button className="admin_btn">Admin page</button>
+         </Link>
+        ):
+        (<div></div>)
+        }
+         
+          {/* <button className="button-profile">Edit profile</button> */}
         </div>
         <h2 style={{ marginTop: "3%" }}>My post</h2>
       </div>
