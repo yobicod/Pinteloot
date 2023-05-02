@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import navBell from "../Images/navBell.png";
 import chat from "../Images/chat.png";
 import profile from "../Images/profile-user.png";
-
+import admin from "../Images/admin.png";
 import Nav from "./nav";
 
 import {
@@ -167,7 +167,7 @@ function Mainboard() {
             value={searchTxt}
           />
           <img className="navBellIcon nav" src={navBell} alt="Bell icon" />
-          <img className="navChatIcon nav" src={chat} alt="Chat icon" />
+          <img className="navChatIcon nav" src={admin} alt="Chat icon" />
           <Link to="/profile">
             <img className="navChatIcon nav" src={profile} alt="Chat icon" />
           </Link>

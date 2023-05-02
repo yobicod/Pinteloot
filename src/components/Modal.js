@@ -27,7 +27,7 @@ function Modal() {
   //รับค่าจาก pin
   const location = useLocation();
   const data = location.state?.data;
-
+  console.log(data);
   const dataToReport = data.data;
   console.log(dataToReport);
 
@@ -237,7 +237,7 @@ function Modal() {
                 style={{ marginRight: "4%", borderRadius: "100%" }}
               />
               <span style={{ "font-size": "1em", opacity: 0.5 }}>
-                Create by {user.name}
+                Create by {data.data.user_create_name}
               </span>
             </div>
             <div className="pin-comment-container">

@@ -4,6 +4,7 @@ import navBell from "../Images/navBell.png";
 import chat from "../Images/chat.png";
 import avatar from "../Images/img_avatar.png";
 import profile from "../Images/profile-user.png";
+import admin from "../Images/admin.png";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Createpin from "./createpin";
 
@@ -35,7 +36,7 @@ function Nav() {
           value={searchTxt}
         ></input>
         <img className="navBellIcon nav" src={navBell} alt="Bell icon"></img>
-        <img className="navChatIcon nav" src={chat} alt="Chat icon"></img>
+        <img className="navChatIcon nav" src={admin} alt="Chat icon"></img>
         <Link to="/profile">
           <img className="navChatIcon nav" src={profile} alt="Chat icon"></img>
         </Link>
