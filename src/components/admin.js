@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Styles/admin.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  BrowserRouter,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, useNavigate } from "react-router-dom";
 import viewBtn from "../Images/analytics.png";
 import banBtn from "../Images/ban.png";
 import Nav from "./nav";

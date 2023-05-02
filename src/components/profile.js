@@ -282,14 +282,11 @@ function Profile() {
 
           {user.Role === "role" ? (
             <Link to="/admin" style={{ textDecoration: "none", color: "#fff" }}>
-              {/* <button className="admin_btn">Admin page</button> */}
               <img src={adminBtn}></img>
             </Link>
           ) : (
             <div></div>
           )}
-
-          {/* <button className="button-profile">Edit profile</button> */}
         </div>
         <h2 style={{ marginTop: "3%" }}>My post</h2>
       </div>

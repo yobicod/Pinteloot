@@ -15,7 +15,6 @@ function ReportPin() {
   const data = location.state?.dataToReport;
   console.log(typeof data);
   const [reportType, setReportType] = useState("");
-  // console.log(reportType);
   const onChangeValue = (event) => {
     setReportType(event.target.value);
   };
