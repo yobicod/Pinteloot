@@ -33,6 +33,9 @@ function Nav() {
           type="text"
           onChange={inputTxt}
           value={searchTxt}
+          style={{
+            padding: "0 20px",
+          }}
         ></input>
         <img className="navBellIcon nav" src={navBell} alt="Bell icon"></img>
 

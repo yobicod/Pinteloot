@@ -80,6 +80,9 @@ function Mainboard() {
             type="text"
             onChange={(e) => setSearchTxt(e.target.value)}
             value={searchTxt}
+            style={{
+              padding: "0 20px",
+            }}
           />
           <img className="navBellIcon nav" src={navBell} alt="Bell icon" />
 
