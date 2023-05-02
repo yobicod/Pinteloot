@@ -372,13 +372,7 @@ function Modal() {
               >
                 Submit change
               </button>
-              {/* <img
-                className="close-modal button-close"
-                style={{
-                  width: "15px",
-                }}
-                onClick={() => toggleEdit()}
-              ></img> */}
+
               <button
                 className="close-modal button-closee"
                 onClick={() => toggleEdit()}

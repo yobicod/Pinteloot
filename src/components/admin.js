@@ -40,10 +40,6 @@ function Admin() {
     console.log(value);
   };
 
-  // const handleViewProfileClick = (value) => {
-  //   console.log
-  // };
-
   const handleBan = (value) => {
     console.log(value);
     fetch(`http://localhost:5000/deletePost/${value.pinData._id}`, {
@@ -52,7 +48,6 @@ function Admin() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "postdata");
-        // setCreatePost(data.data);
       });
 
     fetch(`http://localhost:5000/deleteReport/${value._id}`, {
@@ -61,7 +56,6 @@ function Admin() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "postdata");
-        // setCreatePost(data.data);
       });
     window.location.href = "/admin";
   };
@@ -74,7 +68,6 @@ function Admin() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "postdata");
-        // setCreatePost(data.data);
       });
 
     window.location.href = "/admin";
@@ -222,7 +215,7 @@ function Admin() {
                 <th>ID</th>
                 <th>Comment</th>
                 <th>User</th>
-                {/* <th className="view-table-header">View</th> */}
+
                 <th className="ban-table-header">Ban</th>
               </tr>
               {allComment.map((value, index) => {
@@ -232,17 +225,7 @@ function Admin() {
                     <td>{value._id}</td>
                     <td>{value.text}</td>
                     <td>{value.userCreateComment}</td>
-                    {/* <td
-                      onClick={() => {
-                        handleViewClick(value.pinData);
-                      }}
-                      style={{
-                        textAlign: "center",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <img src={viewBtn}></img>
-                    </td> */}
+
                     <td
                       onClick={() => {
                         handleBanComment(value);
@@ -275,17 +258,7 @@ function Admin() {
                     <td>{value._id}</td>
                     <td>{value.name}</td>
                     <td>{value.email}</td>
-                    {/* <td
-                      onClick={() => {
-                        handleViewProfileClick(value);
-                      }}
-                      style={{
-                        textAlign: "center",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <img src={viewBtn}></img>
-                    </td> */}
+
                     <td
                       onClick={() => {
                         handleBanUser(value);

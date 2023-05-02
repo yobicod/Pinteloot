@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-// import "../components/Styles/Modal_style.css";
+
 import "./Styles/Modal_style.css";
 import { saveAs } from "file-saver";
 import Comments from "./Comments";

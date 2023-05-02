@@ -86,7 +86,6 @@ function Createpin() {
       result = await result.json();
       console.warn(result);
       if (result) {
-        // alert("Data saved succesfully");
         setInputValues([
           {
             Title: "",
@@ -145,10 +144,7 @@ function Createpin() {
           className={`dropzone ${isDragActive ? "active" : null}`}
         >
           {/* {pictures} */}
-          <input
-            {...getInputProps()}
-            // className={`dropzone ${index}`}
-          />
+          <input {...getInputProps()} />
           {pictures.length > 0 ? (
             <img
               key={uuidv4()}
@@ -178,7 +174,6 @@ function Createpin() {
     );
   };
 
-
   return (
     <div>
       <Nav />
@@ -187,7 +182,7 @@ function Createpin() {
           <div className="div-first">
             <div className="container-post">
               <MyDropzone pictures={value.img} index={index} />
-    
+
               <form className="form">
                 <div className="formcontroll">
                   <input
@@ -203,7 +198,9 @@ function Createpin() {
                     className="descrip"
                     type="text"
                     placeholder="Tell every one your pin is about 😊"
-                    onChange={(description) => inputDescription(description, index)}
+                    onChange={(description) =>
+                      inputDescription(description, index)
+                    }
                     value={value.Description}
                   ></input>
                 </div>
@@ -222,9 +219,7 @@ function Createpin() {
         );
       })}
     </div>
-  )
-    
-    
+  );
 }
 
 export default Createpin;

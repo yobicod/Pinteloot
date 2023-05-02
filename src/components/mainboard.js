@@ -66,7 +66,7 @@ function Mainboard() {
       <div className="nav-out-container">
         <div className="navContainer">
           <div className="navBtn nav">
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/mainpage" style={{ textDecoration: "none" }}>
               <p className="homeTxt">Home</p>
             </Link>
           </div>
